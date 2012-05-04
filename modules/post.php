@@ -22,7 +22,8 @@ require(classes_dir.'post.php');
 global $params;
 
 $post = new post();
-$post->permaid = $params[0];
+preg_match('/^[a-z0-9\-]*/', $params[0], $matches);
+$post->permaid = $matches[0];
 
 if (!$post->read() || $post->status != 'published' || $post->db != $settings->db) {
 	$html->do_sysmsg(_('No such post'), null, 404);
