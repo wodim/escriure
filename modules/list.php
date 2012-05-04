@@ -38,7 +38,7 @@ if (!$posts) {
 
 ++$page_number;
 
-$html->do_header($settings->title);
+$html->do_header();
 $rows = $db->get_var(sprintf('SELECT COUNT(*) FROM posts %s', $where));
 
 $pager = $html->do_pages($page_number, ceil($rows / $settings->page_size), '/page/%d', 4);

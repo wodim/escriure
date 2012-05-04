@@ -18,10 +18,10 @@
 */
 
 class HTML {
-	function do_header($title) {
+	function do_header($title = null) {
 		global $session, $settings;
 
-		header('Content-Type: text/html; charset=UTF-8');
+		header('Content-Type: text/html; charset=utf-8');
 		$vars = compact('title', 'session');
 		Haanga::Load(sprintf('%s/header.html', $settings->theme), $vars);
 	}

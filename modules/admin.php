@@ -56,7 +56,7 @@ switch ($params[1]) {
 	case 'template':
 		/* shows a template; you can copy it to your hard disk and write the post there,
 			then dump it to phpmyadmin to publish it */
-		$html->do_header('');
+		$html->do_header();
 		$post = new Post();
 		$post->read = true;
 		$post->text = "\n\n\n<!-- POST CONTENT -->\n\n\n";
