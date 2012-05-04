@@ -20,6 +20,8 @@
 class Session {
 	var $sysmsg = false;
 	var $ip = '';
+	var $tags = null;
+	var $description = null;
 
 	function init() {
 		$ip = $_SERVER['REMOTE_ADDR'];

@@ -21,7 +21,7 @@ require(classes_dir.'post.php');
 
 global $params, $settings;
 
-$html->do_header(sprintf('%s - %s', _('Post archive'), $settings->title));
+$html->do_header(_('Post archive'));
 
 $posts = $db->get_results(
 	sprintf('SELECT UNIX_TIMESTAMP(date) AS ts, title, permaid FROM posts WHERE db = \'%s\' ORDER BY date DESC',
