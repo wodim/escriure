@@ -23,7 +23,7 @@ switch ($params[0]) {
 	case 'sitemap.xml':
 		header('Content-Type: text/xml');
 		/* I'm not using LIMIT here, but you may need it. :D */
-		$results = $db->get_results(sprintf('SELECT permaid FROM posts WHERE db = \'%s\' ORDER BY date DESC', $settings->db));
+		$results = $db->get_results(sprintf('SELECT permaid FROM posts WHERE db = \'%s\' AND status = \'published\' ORDER BY date DESC', $settings->db));
 		if (!$results) {
 			header('HTTP/1.0 503');
 			die;

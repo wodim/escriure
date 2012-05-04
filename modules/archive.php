@@ -24,7 +24,7 @@ global $params, $settings;
 $html->do_header(_('Post archive'));
 
 $posts = $db->get_results(
-	sprintf('SELECT UNIX_TIMESTAMP(date) AS ts, title, permaid FROM posts WHERE db = \'%s\' ORDER BY date DESC',
+	sprintf('SELECT UNIX_TIMESTAMP(date) AS ts, title, permaid FROM posts WHERE db = \'%s\' AND status = \'published\' ORDER BY date DESC',
 		$settings->db));
 
 if (!$posts) {
