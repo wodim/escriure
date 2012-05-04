@@ -16,7 +16,7 @@ msgstr "%e de %B"
 
 #: classes/post.php:60
 msgid "%m/%d %I:%M %P"
-msgstr "%d/%m a las %H:%M"
+msgstr "%e de %B a las %H:%M"
 
 #: classes/html.php:46 classes/html.php:48
 msgid "« prev"
