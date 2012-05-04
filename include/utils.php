@@ -24,11 +24,9 @@ function redir($location = null) {
 		$location = '/';
 	}
 
-	$session->hit(true, $location);
-
 	header('HTTP/1.0 302 Found');
 	header('Location: '.$location);
-	die();
+	die;
 }
 
 /* START LEGACY, ie not being used anymroe */
