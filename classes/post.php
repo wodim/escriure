@@ -60,6 +60,7 @@ class Post {
 
 		$this->permalink = sprintf('%s%s', $settings->url, $this->permaid);
 		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->ts);
+		$this->text = str_replace("\n", '', $this->text);
 		$this->read = true;
 		return true;
 	}
