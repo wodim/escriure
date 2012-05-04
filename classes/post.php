@@ -18,8 +18,8 @@
 */
 
 class Post {
-	const READ = 'id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, status';
-	const READ_BY_PERMAID = 'SELECT id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, status FROM posts WHERE permaid = \'%s\' AND db = \'%s\'';
+	const READ = 'id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, tags, db, status';
+	const READ_BY_PERMAID = 'SELECT id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, tags, status FROM posts WHERE permaid = \'%s\' AND db = \'%s\'';
 
 	var $read = false;
 	var $id = 0;
@@ -28,6 +28,7 @@ class Post {
 	var $date = '';
 	var $title = '';
 	var $text = '';
+	var $tags = '';
 	var $db = '';
 	var $status = 'draft';
 
