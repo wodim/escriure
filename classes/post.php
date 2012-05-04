@@ -55,8 +55,6 @@ class Post {
 		}
 
 		$this->permalink = sprintf('%s%s', $settings->url, $this->permaid);
-		$date = elapsed_time(date('U') - $this->ts);
-		$this->timelapse = ($date == -1) ? false : $date;
 		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->ts);
 		$this->read = true;
 		return true;
