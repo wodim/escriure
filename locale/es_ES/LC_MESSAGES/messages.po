@@ -1,0 +1,58 @@
+#: modules/list.php:36 modules/fourohfour.php:20 modules/archive.php:31
+msgid "Page not found"
+msgstr "Página no encontrada"
+
+#: modules/post.php:28
+msgid "No such post"
+msgstr "Post no encontrado"
+
+#: modules/archive.php:24
+msgid "Post archive"
+msgstr "Lista de posts"
+
+#: modules/archive.php:47
+msgid "%B %e"
+msgstr "%e de %B"
+
+#: classes/post.php:60
+msgid "%m/%d %I:%M %P"
+msgstr "%d/%m a las %H:%M"
+
+#: classes/html.php:46 classes/html.php:48
+msgid "« prev"
+msgstr "« anterior"
+
+#: classes/html.php:68 classes/html.php:70
+msgid "next »"
+msgstr "siguiente »"
+
+#: classes/html.php:83
+msgid "Are you lost?"
+msgstr "¿Te has perdido?"
+
+#: templates/oasis/footer.html:5
+msgid "Archive"
+msgstr "Archivo"
+
+#: templates/oasis/footer.html:6
+#, python-format
+msgid "I use %s"
+msgstr "Uso %s"
+
+#: templates/oasis/footer.html:7
+#, python-format
+msgid "Theme Oasis based on %s"
+msgstr "Tema Oasis basado en %s"
+
+#: templates/oasis/footer.html:8
+msgid "Contact:"
+msgstr "Contacto:"
+
+#: templates/oasis/sysmsg.html:3
+msgid "Go back"
+msgstr "Volver atrás"
+
+#: templates/oasis/post.html:9
+#, python-format
+msgid "Posted on %s"
+msgstr "Publicado el %s"

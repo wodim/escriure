@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+{% if title %}
+		<title>{{title}} - {{settings.title}}</title>
+{% else %}
+		<title>{{settings.title}}</title>
+{% endif %}
+{% if session.sysmsg %}
+		<meta name="robots" content="noindex,nofollow" />
+{% endif %}
+		<link rel="stylesheet" type="text/css" media="all" href="{{settings.statics_url}}{{settings.theme}}/core.css" />
+		<link rel="shortcut icon" href="{{settings.statics_url}}{{settings.theme}}/escriure.png" type="image/x-png"/>
+		<link rel="alternate" type="application/rss+xml" title="{{settings.title}}" href="{{settings.url}}rss" />
+{% if settings.analytics_enabled %}
+		<script>
+			var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', '{{settings.analytics_code}}']);
+				_gaq.push(['_setCustomVar', 1, 'ip', '{{session.ip}}']);
+				_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.async = true; ga.src = '{{settings.statics_url}}ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+{% endif %}
+	</head>
+	<body>
+		<header>
+			<a href="/">{{settings.title}}</a>
+		</header>
+		<section>

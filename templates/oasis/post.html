@@ -1,0 +1,11 @@
+<article>
+	<div class="content">
+		<a class="title" href="{{post.permalink}}">{{post.title}}</a>
+		<div class="text">
+			{{post.text}}
+		</div>
+	</div>
+	<div class="meta">
+		<a class="date" href="{{post.permalink}}">{% trans _('Posted on %s') post.hdate %}</a>
+	</div>
+</article>
