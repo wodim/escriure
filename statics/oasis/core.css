@@ -196,6 +196,10 @@ article blockquote {
 	padding: 3px 8px;
 }
 
+li blockquote {
+	margin: 8px 0 8px 12px;
+}
+
 article h1,
 article h2,
 article h3,
