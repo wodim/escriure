@@ -34,6 +34,7 @@ $rss['date'] = date('r', $posts[0]->ts);
 
 $vars = compact('rss');
 
+header('Content-type: text/xml; charset=utf-8');
 Haanga::Load('rss-header.html', $vars);
 
 $post = new post();
