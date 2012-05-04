@@ -31,6 +31,9 @@ class Post {
 	var $db = '';
 	var $status = 'draft';
 
+	var $permalink = '';
+	var $hdate = '';
+
 	function read($results = null) {
 		global $db, $settings, $session;
 

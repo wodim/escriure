@@ -28,8 +28,7 @@ if (!$post->read() || $post->status != 'published' || $post->db != $settings->db
 	$html->do_sysmsg(_('No such post'), null, 404);
 }
 
+$session->tags = $post->tags;
 $html->do_header($post->title);
-
 $post->output();
-
 $html->do_footer();
