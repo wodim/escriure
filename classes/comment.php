@@ -103,7 +103,7 @@ class Comment {
 			'INSERT INTO comments (nick, mail, url, date, ip, text, post_id, parent, db, status)
 				VALUES (\'%s\', \'%s\', \'%s\', NOW(), \'%s\', \'%s\', \'%d\', \'%d\', \'%s\', \'%s\')',
 			$nick, $mail, $url, $this->ip, $text, $post_id, $parent, $settings->db, $this->status));
-		$db->query(sprintf('UPDATE comments SET comment_count = comment_count + 1 WHERE post_id = %d', 
+		$db->query(sprintf('UPDATE posts SET comment_count = comment_count + 1 WHERE id = %d', 
 			$post_id));
 
 		return true;
