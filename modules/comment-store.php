@@ -56,6 +56,7 @@ if (!$post->warning) {
 	$comment->mail = $mail;
 	$comment->ip = $ip;
 	$comment->text = $text;
+	$comment->url = $url;
 	$comment->status = 'shown';
 	/* we don't need to check whether this post exists, it's already done in post.php */
 	$comment->post_id = $post_id;
