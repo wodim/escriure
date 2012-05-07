@@ -43,8 +43,9 @@ $rows = $db->get_var(sprintf('SELECT COUNT(*) FROM posts %s', $where));
 
 $pager = $html->do_pages($page_number, ceil($rows / $settings->page_size), '/page/%d', 4);
 
-$post = new post();
+$post = new Post();
 foreach ($posts as $this_post) {
+	$post->listing = true;
 	$post->read($this_post);
 	$post->output();
 }

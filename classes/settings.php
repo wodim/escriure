@@ -21,7 +21,7 @@ class Settings {
    const READ = 'SELECT domain, lang, locale, `collate`,
 	analytics_enabled, analytics_code,
 	url, statics_url, db, title,
-	page_size, robots, mail, theme
+	page_size, robots, mail, theme, site_key
 	FROM sites WHERE domain = \'%s\'';
 	/* we are entitled to add reasonable defaults here!! */
 	var $domain = '';
@@ -38,6 +38,7 @@ class Settings {
 	var $robots = 'allow';
 	var $mail = '';
 	var $theme = 'oasis';
+	var $site_key = '';
 
 	var $read = false;
 

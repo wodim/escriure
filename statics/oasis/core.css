@@ -147,6 +147,10 @@ article .meta a {
 	color: #424242;
 }
 
+article .meta a.comments {
+	float: right;
+}
+
 footer {
 	width: 570px;
 	margin: 14px auto;
@@ -216,4 +220,103 @@ article h3 {
 
 article h4 {
 	font-size: 11pt;
+}
+
+div.warning {
+	font-size: 8pt;
+	text-align: center;
+	padding: 2px 0;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 12px;
+	margin-top: -8px;
+}
+
+aside.comment, dl.comment-form {
+	clear: both;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+aside.comment .meta, dl.comment-form dt {
+	width: 150px;
+	float: left;
+	font-size: 9pt;
+	padding: 5px 8px;
+	text-align: right;
+}
+
+aside.comment .meta span {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+aside.comment .meta .nick {
+	font-weight: bold;
+}
+
+aside.comment .meta .date {
+	font-size: 8pt;
+}
+
+aside.comment .text, dl.comment-form dd {
+	border-left: 1px solid #eee;
+	padding: 5px 8px;
+	margin-left: 165px;
+	font-size: 9pt;
+	min-height: 40px;
+}
+
+dl.comment-form {
+}
+
+dl.comment-form dd {
+	padding: 2px;
+	border-left: 0 none;
+}
+
+dl.comment-form dd input[type=text],
+dl.comment-form dd input[type=email],
+dl.comment-form dd textarea {
+	border: 1px solid #eee;
+	box-shadow: inset 0 5px 8px -8px black;
+	font: 9pt 'Georgia', 'Arial', sans-serif;
+	color: #424242;
+	padding: 3px;
+	width: 200px;
+}
+
+dl.comment-form dd input[type=text]:focus,
+dl.comment-form dd input[type=text]:hover,
+dl.comment-form dd input[type=email]:focus,
+dl.comment-form dd input[type=email]:hover,
+dl.comment-form dd textarea:focus,
+dl.comment-form dd textarea:hover {
+	border: 1px solid #ddd;
+	box-shadow: inset 0 5px 8px -8px black;
+}
+
+dl.comment-form dd input[name=captcha] {
+	width: 30px;
+}
+
+dl.comment-form dd textarea {
+	width: 300px;
+	height: 100px;
+}
+
+dl.comment-form dd input[type=submit] {
+	padding: 3px 10px;
+	border: 1px solid #ddd;
+	background: #f3f3f3;
+	font: 9pt 'Georgia', 'Arial', sans-serif;
+	color: #424242;
+	text-shadow: 1px 1px white;
+	box-shadow: inset 0 12px 8px -8px white, 0 1px 3px #dadada;
+	margin-left: 0px;
+	cursor: pointer;
+}
+
+dl.comment-form dd input[type=submit]:active {
+	margin: 3px 0 0 1px;
 }

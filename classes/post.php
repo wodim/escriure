@@ -18,8 +18,8 @@
 */
 
 class Post {
-	const READ = 'id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, tags, db, status';
-	const READ_BY_PERMAID = 'SELECT id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, tags, status FROM posts WHERE permaid = \'%s\' AND db = \'%s\'';
+	const READ = 'id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, tags, db, status, comment_count, comment_status';
+	const READ_BY_PERMAID = 'SELECT id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, tags, status, comment_count, comment_status FROM posts WHERE permaid = \'%s\' AND db = \'%s\'';
 
 	var $read = false;
 	var $id = 0;
@@ -31,9 +31,14 @@ class Post {
 	var $tags = '';
 	var $db = '';
 	var $status = 'draft';
+	var $comment_count = 0;
+	var $comment_status = 'open';
 
 	var $permalink = '';
 	var $hdate = '';
+	/* shows a warning such as "comments closed", "mail reuiqred" */
+	var $warning = '';
+	var $listing = false;
 
 	function read($results = null) {
 		global $db, $settings, $session;
@@ -61,6 +66,9 @@ class Post {
 		$this->permalink = sprintf('%s%s', $settings->url, $this->permaid);
 		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->ts);
 		$this->text = str_replace("\n", '', $this->text);
+		if ($this->comment_status == 'closed') {
+			$this->warning = 'Comments for this post are closed.';
+		}
 		$this->read = true;
 		return true;
 	}
@@ -72,7 +80,6 @@ class Post {
 		}
 
 		$post = $this;
-
 		$vars = compact('post');
 		Haanga::Load(sprintf('%s/post.html', $settings->theme), $vars);
 
@@ -93,5 +100,13 @@ class Post {
 		Haanga::Load('rss-post.html', $vars);
 
 		return true;
+	}
+
+	function add_warning($text) {
+		if ($this->warning != '') {
+			$this->warning = sprintf('%s<br />%s', $this->warning, $text);
+		} else {
+			$this->warning = $text;
+		}
 	}
 }

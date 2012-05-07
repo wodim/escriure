@@ -7,5 +7,20 @@
 	</div>
 	<div class="meta">
 		<a class="date" href="{{post.permalink}}">{% trans _('Posted on %s') post.hdate %}</a>
+{# weird but needed, there's no support for elseif in haanga #}
+{% if post.comment_count > 1 %}
+		<a class="comments" href="{{post.permalink}}#comments">{% trans _('%s comments') post.comment_count %}</a>
+{% else %}
+	{% if post.comment_count == 1 %}
+		<a class="comments" href="{{post.permalink}}#comments">{% trans _('One comment') %}</a>
+	{% else %}
+		<a class="comments" href="{{post.permalink}}#comment-form">{% trans _('Leave a comment') %}</a>
+	{% endif %}
+{% endif %}
 	</div>
 </article>
+{% if post.warning && !post.listing && post.comment_status == 'closed' %}
+<div class="warning">
+	{{post.warning}}
+</div>
+{% endif %}

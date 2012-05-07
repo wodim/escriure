@@ -2,9 +2,38 @@
 msgid "Page not found"
 msgstr "Página no encontrada"
 
-#: modules/post.php:28
+#: modules/post.php:30
 msgid "No such post"
-msgstr "Post no encontrado"
+msgstr "Página no encontrada"
+
+#: modules/comment-form.php:44
+#, php-format
+msgid "Result of <strong>%s</strong>?"
+msgstr "¿Resultado de <strong>%s</strong>?"
+
+#: modules/comment-store.php:21
+msgid "Comments for this post were closed while you were writing this one."
+msgstr "Los comentarios de este post se cerraron mientras escribías éste."
+
+#: modules/comment-store.php:35
+msgid "Please, don't leave your name empty. You can use an alias if you want."
+msgstr "Por favor, no dejes tu nombre en blanco. Usa un alias si quieres."
+
+#: modules/comment-store.php:38
+msgid ""
+"Your e-mail address is not valid. Please, check it and try again or just "
+"leave it empty."
+msgstr ""
+"Tu dirección de correo no es válida.<br />Por favor, comprueba que esté "
+"bien escrita o déjala en blanco si así lo prefieres."
+
+#: modules/comment-store.php:41
+msgid "You forgot the most important part: the comment!"
+msgstr "Se te olvidó la parte más importante: ¡el comentario!"
+
+#: modules/comment-store.php:50
+msgid "The result of the operation is not valid! Was it too hard for you?"
+msgstr "El resultado de la operación no era válido, ¿era muy difícil para ti?"
 
 #: modules/archive.php:24
 msgid "Post archive"
@@ -14,7 +43,7 @@ msgstr "Lista de posts"
 msgid "%B %e"
 msgstr "%e de %B"
 
-#: classes/post.php:60
+#: classes/post.php:67 classes/comment.php:65
 msgid "%m/%d %I:%M %P"
 msgstr "%e de %B a las %H:%M"
 
@@ -50,9 +79,42 @@ msgstr "Contacto:"
 
 #: templates/oasis/sysmsg.html:3
 msgid "Go back"
-msgstr "Volver atrás"
+msgstr "Atrás"
 
 #: templates/oasis/post.html:9
 #, python-format
 msgid "Posted on %s"
 msgstr "Publicado el %s"
+
+#: templates/oasis/post.html:12
+#, python-format
+msgid "%s comments"
+msgstr "%s comentarios"
+
+#: templates/oasis/post.html:15
+msgid "One comment"
+msgstr "Un comentario"
+
+#: templates/oasis/post.html:17
+msgid "Leave a comment"
+msgstr "Deja un comentario"
+
+#: templates/oasis/comment-form.html:10
+msgid "Your name:"
+msgstr "Tu nombre:"
+
+#: templates/oasis/comment-form.html:12
+msgid "Your e-mail (optional):"
+msgstr "Tu correo (opcional):"
+
+#: templates/oasis/comment-form.html:14
+msgid "Your website (optional):"
+msgstr "Tu web (opcional):"
+
+#: templates/oasis/comment-form.html:16
+msgid "Your comment:"
+msgstr "Tu comentario:"
+
+#: templates/oasis/comment-form.html:21
+msgid "Send comment"
+msgstr "Enviar comentario"

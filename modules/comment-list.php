@@ -17,13 +17,19 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class Session {
-	var $sysmsg = false;
-	var $ip = '';
-	var $tags = null;
-	var $description = null;
+$where = sprintf('WHERE db = \'%s\' AND status = \'shown\' AND post_id = %d',
+	$settings->db, $post->id);
+$comments = $db->get_results(sprintf('SELECT %s FROM comments %s ORDER BY date ASC',
+	Comment::READ, $where, $settings->page_size));
 
-	function init() {
-		$this->ip = $_SERVER['REMOTE_ADDR'];
+if ($comments) {
+	$comment = new Comment();
+	$i = 0;
+	/* anchor */
+	echo '<a id="comments"></a>';
+	foreach ($comments as $this_comment) {
+		$comment->read($this_comment);
+		++$comment->order;
+		$comment->output();
 	}
 }

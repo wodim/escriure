@@ -28,12 +28,12 @@ function redir($location = null) {
 	header('Location: '.$location);
 	die;
 }
+// you could call this function with no arguments to get a mm.
+function get_avatar_url($mail = '', $size = 32) {
+	return(sprintf('http://www.gravatar.com/avatar/%s/?d=mm&s=%d', md5(trim(strtolower($mail))), $size));
+}
 
 /* START LEGACY, ie not being used anymroe */
-// you could call this function with no arguments to get a mm.
-function get_avatar_url($email = '') {
-	return('http://www.gravatar.com/avatar/'.md5(trim(strtolower($email))).'/?d=mm');
-}
 
 function is_valid_nick($nick) {
 	return(preg_match('/^[a-zA-Z0-9]{3,12}$/', $nick));
@@ -71,4 +71,18 @@ function is_bot() {
 
 function sha512($string) {
 	return hash('sha512', $string);
+}
+
+function is_posting($required) {
+	if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+		return false;
+	}
+
+	foreach ($required as $variable) {
+		if (!isset($_POST[$variable])) {
+			return false;
+		}
+	}
+
+	return true;
 }

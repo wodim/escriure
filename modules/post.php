@@ -18,8 +18,9 @@
 */
 
 require(classes_dir.'post.php');
+require(classes_dir.'comment.php');
 
-global $params;
+global $params, $session;
 
 $post = new post();
 preg_match('/^[a-z0-9\-]*/', $params[0], $matches);
@@ -29,7 +30,21 @@ if (!$post->read() || $post->status != 'published' || $post->db != $settings->db
 	$html->do_sysmsg(_('No such post'), null, 404);
 }
 
+if (is_posting(array('nick', 'mail', 'captcha', 'auth', 'seed', 'text'))) {
+	require(modules_dir.'comment-store.php');
+}
+
 $session->tags = $post->tags;
 $html->do_header($post->title);
 $post->output();
+
+if ($post->comment_status != 'hidden') {
+	require(modules_dir.'comment-list.php');
+}
+
+if ($post->comment_status == 'open') {
+	$form['action'] = sprintf('/%s', $post->permaid);
+	require(modules_dir.'comment-form.php');
+}
+
 $html->do_footer();
