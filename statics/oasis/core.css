@@ -323,13 +323,25 @@ dl.comment-form dd input[type=submit]:active {
 
 article code {
 	font-family: 'Consolas', 'Ubuntu Mono', 'Liberation Mono', 'Lucida Console', monospace;
-	font-size: 8pt;
-	line-height: 8px;
+	font-size: 9pt;
+}
+
+article p code {
+	background: #fafafa;
+	padding: 4px 2px 0 2px;
+	border-radius: 2px;
+	/* so it doesn't push the line */
+	line-height: 0;
 }
 
 article pre {
 	overflow-x: auto;
 	width: 520px;
+}
+
+article pre code {
+	font-size: 8pt;
+	line-height: 8px;
 }
 
 article pre::-webkit-scrollbar {
