@@ -61,9 +61,12 @@ if (!$post->warning) {
 	/* we don't need to check whether this post exists, it's already done in post.php */
 	$comment->post_id = $post_id;
 	$comment->store();
+	redir(sprintf('/%s#comment-last', $post->permaid));
 } else {
 	$form['nick'] = htmlspecialchars($nick);
 	$form['mail'] = htmlspecialchars($mail);
 	$form['text'] = htmlspecialchars($text);
 	$form['url'] = htmlspecialchars($url);
+	/* awfully awful */
+	$form['jump'] = true;
 }

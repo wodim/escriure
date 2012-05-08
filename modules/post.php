@@ -43,7 +43,7 @@ if ($post->comment_status != 'hidden') {
 }
 
 if ($post->comment_status == 'open') {
-	$form['action'] = sprintf('/%s', $post->permaid);
+	$form['action'] = sprintf('/%s#comment-form', $post->permaid);
 	require(modules_dir.'comment-form.php');
 }
 

@@ -1,8 +1,11 @@
 <form method="post" action="{{form.action}}">
 {% if post.warning %}
-<div class="warning">
+<div class="warning" id="comment-warning">
 	{{post.warning}}
 </div>
+	{% if form.jump %}
+<script>document.location.href = "#comment-warning";</script>
+	{% endif %}
 {% else %}
 <div class="warning">{% trans _('Leave a comment') %}</div>
 {% endif %}

@@ -30,6 +30,9 @@ if ($comments) {
 	foreach ($comments as $this_comment) {
 		$comment->read($this_comment);
 		++$comment->order;
+		if ($comment->order == count($comments)) {
+			echo '<a id="comment-last"></a>';
+		}
 		$comment->output();
 	}
 }
