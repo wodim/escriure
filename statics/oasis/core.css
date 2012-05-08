@@ -193,8 +193,8 @@ section.archive p {
 	margin-left: 20px;
 }
 
-article blockquote {
-	border-left: 5px solid #eee;
+article blockquote, pre {
+	border-left: 5px solid #fafafa;
 	color: #666;
 	margin: 0 0 8px 12px;
 	padding: 3px 8px;
@@ -319,4 +319,29 @@ dl.comment-form dd input[type=submit] {
 
 dl.comment-form dd input[type=submit]:active {
 	margin: 3px 0 0 1px;
+}
+
+article code {
+	font-family: 'Consolas', 'Ubuntu Mono', 'Liberation Mono', 'Lucida Console', monospace;
+	font-size: 8pt;
+	line-height: 8px;
+}
+
+article pre {
+	overflow-x: scroll;
+	width: 520px;
+}
+
+article pre::-webkit-scrollbar {
+	height: 6px;
+}
+ 
+article pre::-webkit-scrollbar-track {
+	border-radius: 0 3px 3px 0;
+	background: #fafafa;
+}
+
+article pre::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: #ccc;
 }
