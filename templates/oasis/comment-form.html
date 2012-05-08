@@ -19,7 +19,7 @@
 	<dt>{% trans _('Your comment:') %}</dt>
 	<dd><textarea name="text">{% if form.nick %}{{form.text}}{% endif %}</textarea></dd>
 	<dt>{{form.captcha}}</dt>
-	<dd><input type="text" name="captcha" maxlength="2" /></dd>
+	<dd><input type="text" name="captcha" maxlength="2" autocomplete="off" /></dd>
 	<dt></dt>
 	<dd><input type="submit" value="{% trans _('Send comment') %}" />
 </dl>
