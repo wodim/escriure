@@ -24,15 +24,11 @@ $comments = $db->get_results(sprintf('SELECT %s FROM comments %s ORDER BY date A
 
 if ($comments) {
 	$comment = new Comment();
-	$i = 0;
 	/* anchor */
 	echo '<a id="comments"></a>';
 	foreach ($comments as $this_comment) {
 		$comment->read($this_comment);
 		++$comment->order;
-		if ($comment->order == count($comments)) {
-			echo '<a id="comment-last"></a>';
-		}
 		$comment->output();
 	}
 }

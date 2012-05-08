@@ -61,7 +61,7 @@ if (!$post->warning) {
 	/* we don't need to check whether this post exists, it's already done in post.php */
 	$comment->post_id = $post_id;
 	$comment->store();
-	redir(sprintf('/%s#comment-last', $post->permaid));
+	redir(sprintf('/%s#comment-%d', $post->permaid, $post->comment_count + 1));
 } else {
 	$form['nick'] = htmlspecialchars($nick);
 	$form['mail'] = htmlspecialchars($mail);
