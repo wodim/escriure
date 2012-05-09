@@ -67,7 +67,7 @@ class Post {
 		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->ts);
 		$this->text = str_replace("\n", '', $this->text);
 		if ($this->comment_status == 'closed') {
-			$this->warning = 'Comments for this post are closed.';
+			$this->warning = _('Comments for this post are closed.');
 		}
 		$this->read = true;
 		return true;

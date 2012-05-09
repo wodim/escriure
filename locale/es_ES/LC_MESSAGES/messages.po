@@ -13,7 +13,7 @@ msgstr "¿Resultado de <strong>%s</strong>?"
 
 #: modules/comment-store.php:21
 msgid "Comments for this post were closed while you were writing this one."
-msgstr "Los comentarios de este post se cerraron mientras escribías éste."
+msgstr "Los comentarios de esta entrada se han cerrado."
 
 #: modules/comment-store.php:35
 msgid "Please, don't leave your name empty. You can use an alias if you want."
@@ -37,7 +37,7 @@ msgstr "El resultado de la operación no era válido, ¿era muy difícil para ti
 
 #: modules/archive.php:24
 msgid "Post archive"
-msgstr "Lista de posts"
+msgstr "Lista de entradas"
 
 #: modules/archive.php:47
 msgid "%B %e"
@@ -118,3 +118,7 @@ msgstr "Tu comentario:"
 #: templates/oasis/comment-form.html:21
 msgid "Send comment"
 msgstr "Enviar comentario"
+
+#: classes/post.php:70
+msgid "Comments for this post are closed."
+msgstr "Los comentarios de esta entrada están cerrados."

@@ -14,7 +14,9 @@
 	{% if post.comment_count == 1 %}
 		<a class="comments" href="{{post.permalink}}#comments">{% trans _('One comment') %}</a>
 	{% else %}
+		{% if post.comment_status == 'open' %}
 		<a class="comments" href="{{post.permalink}}#comment-form">{% trans _('Leave a comment') %}</a>
+		{% endif %}
 	{% endif %}
 {% endif %}
 	</div>
