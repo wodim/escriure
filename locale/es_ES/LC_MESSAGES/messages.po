@@ -129,7 +129,7 @@ msgstr "Navegador no soportado"
 
 #: templates/oasis/unsupported-browser.html:8
 msgid "Sorry, your browser is not supported."
-msgstr "Tu navegador no está desactualizado."
+msgstr "Tu navegador está desactualizado."
 
 #: templates/oasis/unsupported-browser.html:9
 #, python-format
