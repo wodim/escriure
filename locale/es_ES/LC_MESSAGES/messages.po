@@ -122,3 +122,16 @@ msgstr "Enviar comentario"
 #: classes/post.php:70
 msgid "Comments for this post are closed."
 msgstr "Los comentarios de esta entrada están cerrados."
+
+#: templates/oasis/unsupported-browser.html:4
+msgid "Unsupported browser"
+msgstr "Navegador no soportado"
+
+#: templates/oasis/unsupported-browser.html:8
+msgid "Sorry, your browser is not supported."
+msgstr "Tu navegador no está desactualizado."
+
+#: templates/oasis/unsupported-browser.html:9
+#, python-format
+msgid "Click <a href=\"%s\">here</a> to download Internet Explorer 9."
+msgstr "Haz clic <a href=\"%s\">aquí</a> para descargar Internet Explorer 9."

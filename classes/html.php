@@ -22,6 +22,7 @@ class HTML {
 		global $session, $settings;
 
 		header('Content-Type: text/html; charset=utf-8');
+		$this->check_browser();
 		$vars = compact('title', 'session');
 		Haanga::Load(sprintf('%s/header.html', $settings->theme), $vars);
 	}
@@ -87,5 +88,20 @@ class HTML {
 		Haanga::Load(sprintf('%s/sysmsg.html', $settings->theme), $vars);
 		$this->do_footer();
 		die();
+	}
+
+	function check_browser() {
+		global $settings;
+
+		if (!isset($_SERVER['HTTP_USER_AGENT'])) {
+			return;
+		}
+
+		if (!preg_match('/MSIE\s[678]/', $_SERVER['HTTP_USER_AGENT'])) {
+			return;
+		}
+
+		Haanga::Load(sprintf('%s/unsupported-browser.html', $settings->theme));
+		die;
 	}
 }
