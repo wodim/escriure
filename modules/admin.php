@@ -62,4 +62,23 @@ switch ($params[1]) {
 		$post->text = "\n\n\n<!-- POST CONTENT -->\n\n\n";
 		$post->output();
 		$html->do_footer();
+	break;
+	case 'recount':
+		/* recounts all comments. this should be used whenever you delete or insert a comment
+			by hand */
+		/* we will probably never have a save() method for Post, but, in case we have
+			one, fix this */
+		die;
+		header('Content-type: text/plain');
+		foreach (all_posts() as $post_id) {
+			printf("--- Counting comments for %d...\n", $post_id);
+			$comment_count = $db->get_var(
+				sprintf('SELECT COUNT(0) FROM comments WHERE post_id = %d', $post_id));
+			printf("+++ %d comments found for %d\n", $comment_count, $post_id);
+			printf("--- Updating comment_count for %d...\n", $post_id);
+			$db->query(
+				sprintf('UPDATE posts SET comment_count = %d WHERE id = %d',
+					$comment_count, $post_id));
+			printf("+++ Updated comment_count for %d\n", $post_id);
+		}
 }
