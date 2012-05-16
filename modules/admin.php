@@ -73,7 +73,7 @@ switch ($params[1]) {
 		foreach (all_posts() as $post_id) {
 			printf("--- Counting comments for %d...\n", $post_id);
 			$comment_count = $db->get_var(
-				sprintf('SELECT COUNT(0) FROM comments WHERE post_id = %d', $post_id));
+				sprintf('SELECT COUNT(0) FROM comments WHERE post_id = %d AND status = \'shown\'', $post_id));
 			printf("+++ %d comments found for %d\n", $comment_count, $post_id);
 			printf("--- Updating comment_count for %d...\n", $post_id);
 			$db->query(
