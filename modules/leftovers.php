@@ -19,6 +19,9 @@
 
 global $params, $settings, $db;
 
+/* don't index any of these */
+header('X-Robots-Tag: noindex');
+
 switch ($params[0]) {
 	case 'sitemap.xml':
 		header('Content-Type: text/xml');
@@ -28,6 +31,8 @@ switch ($params[0]) {
 			header('HTTP/1.0 503');
 			die;
 		}
+		/* i'm using plain echo here because at a first glance i thought
+			it would be faster and cleaner. after doing it, it's obviously not cleaner. */
 		echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
 		echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
 		echo "\t".'<url>'."\n";
@@ -50,7 +55,8 @@ switch ($params[0]) {
 				break;
 			case 'allow':
 			default:
-				echo "Allow: /\n";
+				/* don't index /page/: only the individual articles and the post archive */
+				echo "Allow: /\nDisallow: /page/*\nDisallow: /rss";
 		}
 		printf('Sitemap: %ssitemap.xml', $settings->url);
 		break;
