@@ -51,13 +51,14 @@ switch ($params[0]) {
 		echo "User-agent: *\n";
 		switch ($settings->robots) {
 			case 'disallow':
-				echo "Disallow: /\n";
+				echo "Disallow: /";
 				break;
 			case 'allow':
 			default:
 				/* don't index /page/: only the individual articles and the post archive */
 				echo "Allow: /\nDisallow: /page/*\nDisallow: /rss";
 		}
+		echo "\n\n";
 		printf('Sitemap: %ssitemap.xml', $settings->url);
 		break;
 	case 'favicon.ico':
