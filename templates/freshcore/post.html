@@ -1,0 +1,34 @@
+<article>
+	<div class="content">
+		<a class="title" href="{{post.permalink}}">{{post.title}}</a>
+		<a class="date" href="{{post.permalink}}">Publicado por {{post.nick|escape}} el {{post.hdate}}</a>
+		<div class="text">
+			{{post.text}}
+		</div>
+	</div>
+	<div class="meta">
+{# weird but needed, there's no support for elseif in haanga #}
+{% if post.comment_count > 1 %}
+		<a class="comments transitional" href="{{post.permalink}}#comments">{{post.comment_count}} comentarios</a>
+{% else %}
+	{% if post.comment_count == 1 %}
+		<a class="comments transitional" href="{{post.permalink}}#comments">Un comentario</a>
+	{% else %}
+		{% if post.comment_status == 'open' %}
+		<a class="comments transitional" href="{{post.permalink}}#comment-form">Deja un comentario</a>
+		{% else %}
+		<a class="comments transitional">Comentarios cerrados</a>
+		{% endif %}
+	{% endif %}
+{% endif %}
+	<div class="clearit"></div>
+	</div>
+</article>
+{% if post.warning && !post.listing && post.comment_status == 'closed' %}
+<div class="warning">
+	{{post.warning}}
+</div>
+{% endif %}
+{% if !post.listing %}
+<a id="comments"></a>
+{% endif %}

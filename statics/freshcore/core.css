@@ -1,0 +1,436 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, img, ins, kbd, q, s, samp,
+small, strike, tt, var,
+center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+/* end css reset */
+
+body {
+	font: 10pt 'Arial', sans-serif;
+	line-height: 150%;
+	color: #424242;
+}
+
+a {
+	color: #5281b9;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #111;
+}
+
+header {
+	background: #5281B9;
+	border-bottom: 2px solid #eee;
+	padding: 12px 0 8px;
+	margin: 0 0 20px 0;
+	/*box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);*/
+}
+
+header a {
+	width: 630px;
+	margin: 0 auto;
+	display: block;
+	text-decoration: none;
+	color: white;
+	text-shadow: 0 1px 1px black;
+}
+
+header a:hover {
+	color: white;
+}
+
+header a.blog {
+	font-size: 18pt;
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+header a.blog span {
+	margin-left: 6px;
+	font-size: 9pt;
+	font-style: italic;
+	-moz-transition: 0.3s linear all;
+	-webkit-transition: 0.3s ease-out all;
+	-o-transition: 0.3s linear all;
+	-ms-transition: 0.3s linear all;
+	letter-spacing: 0;
+	opacity: 0;
+}
+
+header a.blog:hover span.home {
+	opacity: 0.8;
+}
+
+section {
+	width: 650px;
+	margin: 0 auto;
+}
+
+article {
+	margin-bottom: 25px;
+}
+
+article .content {
+	background: white;
+	padding: 10px;
+}
+
+article .content .date {
+	color: #aaa;
+	font-size: 8pt;
+	margin: 0 0 10px 10px;
+	display: block;
+}
+
+article .content p, li {
+	text-align: justify;
+	margin-bottom: 8px;
+}
+
+article .content p:last-child {
+	margin: 0;
+}
+
+article .content .text {
+	line-height: 20px;
+}
+
+article .content .text p {
+	/* text-indent: 20px; :/ */
+}
+
+article .content a.title {
+	font-size: 16pt;
+	color: #202020;
+	text-decoration: none;
+	display: block;
+	margin-bottom: 10px;
+}
+
+article img {
+	margin: 10px auto;
+	display: block;
+	background: #eee;
+	padding: 1px;
+	border: 5px solid #fafafa;
+}
+
+ol, ul {
+	margin-left: 25px;
+	list-style: disc;
+}
+
+article .meta {
+	border-top: 1px solid #eee;
+	background: #fafafa;
+	padding: 10px;
+	font-size: 9pt;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+article .meta a.comments {
+	float: right;
+	display: inline-block;
+	padding: 3px 10px;
+	background: -moz-linear-gradient(top, #6e92be, #5281b9);
+	background: -webkit-linear-gradient(top, #6e92be, #5281b9);
+	background: -o-linear-gradient(top, #6e92be, #5281b9);
+	background: -ms-linear-gradient(top, #6e92be, #5281b9);
+	background: linear-gradient(top, #6e92be, #5281b9);
+	background-repeat: repeat-x;
+	background-color: #6e92be;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	-moz-transition: 0.3s linear all;
+	-webkit-transition: 0.3s linear all;
+	-o-transition: 0.3s linear all;
+	-ms-transition: 0.3s linear all;
+	border-radius: 2px;
+	border: 1px solid #204a87;
+	color: white;
+	font-weight: bold;
+}
+
+article .meta a.comments:hover {
+	background-position: 0 30px;
+}
+
+article .meta a.comments:active {
+}
+
+footer {
+	width: 570px;
+	margin: 14px auto;
+	font-size: 8pt;
+	color: #ababab;
+	text-align: center;
+}
+
+.pager {
+	margin: 20px 0;
+	text-align: center;
+}
+
+.pager span,
+.pager a {
+	margin-right: 12px;
+}
+
+.pager span::last-child,
+.pager a::last-child {
+	margin-right: 0;
+}
+
+section.archive h3,
+section.archive h4 {
+	font-weight: bold;
+}
+
+section.archive h3 {
+	font-size: 16pt;
+	margin: 8px 0;
+}
+
+section.archive h4 {
+	font-size: 12pt;
+	margin: 6px 0 6px 6px;
+}
+
+section.archive p {
+	margin-left: 20px;
+}
+
+article blockquote, pre {
+	border-left: 5px solid #fafafa;
+	color: #666;
+	margin: 0 0 12px 12px;
+	padding: 3px 8px;
+}
+
+li blockquote {
+	margin: 8px 0 8px 12px;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+article h3 {
+	font-size: 13pt;
+}
+
+article h4 {
+	font-size: 11pt;
+}
+
+div.warning {
+	font-size: 10pt;
+	text-align: center;
+	padding: 2px 0;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 12px;
+	margin-top: -8px;
+}
+
+aside.comment, dl.comment-form {
+	clear: both;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+aside.comment .meta, dl.comment-form dt {
+	width: 150px;
+	float: left;
+	font-size: 9pt;
+	padding: 5px 8px;
+	text-align: right;
+}
+
+aside.comment .meta span {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+aside.comment .meta .nick {
+	font-weight: bold;
+}
+
+aside.comment .meta .date {
+	font-size: 8pt;
+}
+
+aside.comment .text, dl.comment-form dd {
+	border-left: 1px solid #eee;
+	padding: 5px 8px;
+	margin-left: 165px;
+	font-size: 9pt;
+	min-height: 40px;
+}
+
+dl.comment-form {
+}
+
+dl.comment-form dd {
+	padding: 2px;
+	border-left: 0 none;
+}
+
+dl.comment-form dd input[type=text],
+dl.comment-form dd input[type=email],
+dl.comment-form dd textarea {
+	border: 1px solid #eee;
+	box-shadow: inset 0 5px 8px -8px rgba(0, 0, 0, 0.5);
+	font: 9pt 'Arial', sans-serif;
+	color: #424242;
+	padding: 3px;
+	width: 300px;
+	border-radius: 2px;
+}
+
+dl.comment-form dd input[type=text]:focus,
+dl.comment-form dd input[type=text]:hover,
+dl.comment-form dd input[type=email]:focus,
+dl.comment-form dd input[type=email]:hover,
+dl.comment-form dd textarea:focus,
+dl.comment-form dd textarea:hover {
+	border: 1px solid #ddd;
+	box-shadow: inset 0 5px 8px -8px black;
+}
+
+dl.comment-form dd input[name=captcha] {
+	width: 30px;
+}
+
+dl.comment-form dd textarea {
+	width: 400px;
+	height: 100px;
+}
+
+dl.comment-form dd input[type=submit] {
+	background: -moz-linear-gradient(top, #6e92be, #5281b9);
+	background: -webkit-linear-gradient(top, #6e92be, #5281b9);
+	background: -o-linear-gradient(top, #6e92be, #5281b9);
+	background: -ms-linear-gradient(top, #6e92be, #5281b9);
+	background: linear-gradient(top, #6e92be, #5281b9);
+	background-repeat: repeat-x;
+	background-color: #6e92be;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	-moz-transition: 0.3s linear all;
+	-webkit-transition: 0.3s linear all;
+	-o-transition: 0.3s linear all;
+	-ms-transition: 0.3s linear all;
+	border-radius: 2px;
+	border: 1px solid #204a87;
+	color: white;
+	font-weight: bold;
+	padding: 5px 10px;
+	font: 9pt 'Arial', sans-serif;
+	margin-left: 0px;
+	cursor: pointer;
+	font-weight: bold;
+	display: inline-block;
+}
+
+dl.comment-form dd input[type=submit]:hover {
+	background-position: 0 30px;
+}
+
+article code {
+	font-family: 'Consolas', 'Ubuntu Mono', 'Liberation Mono', 'Lucida Console', monospace;
+	font-size: 9pt;
+}
+
+article p code {
+	background: #f8f8fa;
+	padding: 4px 2px 0 2px;
+	border-radius: 2px;
+	/* so it doesn't push the line */
+	line-height: 0;
+}
+
+article pre {
+	overflow-x: auto;
+	width: 580px;
+}
+
+article pre code {
+	font-size: 8pt;
+	line-height: 8px;
+}
+
+article pre::-webkit-scrollbar {
+	height: 6px;
+}
+ 
+article pre::-webkit-scrollbar-track {
+	border-radius: 0 3px 3px 0;
+	background: #fafafa;
+}
+
+article pre::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: #ccc;
+}
+
+div.clearit {
+	clear: both;
+}

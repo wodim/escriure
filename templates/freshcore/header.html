@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+{% if title %}
+		<title>{{title}} - {{settings.title}}</title>
+{% else %}
+		<title>{{settings.title}}</title>
+{% endif %}
+{% if session.sysmsg %}
+		<meta name="robots" content="noindex,nofollow" />
+{% endif %}
+{% if session.tags %}
+		<meta name="keywords" content="{{session.tags|escape}}" />
+{% endif %}
+{% if session.description %}
+		<meta name="description" content="{{session.description|escape}}" />
+{% endif %}
+		<link rel="stylesheet" type="text/css" media="all" href="{{settings.statics_url}}{{settings.theme}}/core.css?6" />
+		<link rel="shortcut icon" href="{{settings.statics_url}}{{settings.theme}}/escriure.png" type="image/x-png"/>
+		<link rel="alternate" type="application/rss+xml" title="{{settings.title}}" href="{{settings.url}}rss" />
+{% if settings.analytics_enabled %}
+		<script>
+			var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', '{{settings.analytics_code}}']);
+				_gaq.push(['_setCustomVar', 1, 'ip', '{{session.ip}}']);
+				_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.async = true; ga.src = '{{settings.statics_url}}ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+{% endif %}
+	</head>
+	<body>
+		<header>
+			<a class="blog" href="/">{{settings.title}}<span class="home">Haz clic para volver al inicio</span></a>
+		</header>
+		<section>
