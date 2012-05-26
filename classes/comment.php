@@ -62,6 +62,9 @@ class Comment {
 
 		$this->avatar = get_avatar_url($this->mail, 32);
 		$this->url_safe = htmlentities($this->url);
+		if (!preg_match('/^https?:\/\//', $this->url_safe)) {
+			$this->url_safe = sprintf('http://%s', $this->url_safe);
+		}
 		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->ts);
 		$this->read = true;
 		return true;
