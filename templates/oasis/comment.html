@@ -7,7 +7,7 @@
 {% else %}
 		<span class="nick">{{comment.nick|escape}}</span>
 {% endif %}
-		<span class="date">{{comment.hdate}}</span>
+		<a href="/{{post.permaid}}#comment-{{comment.order}}"><span class="date">{{comment.hdate}}</span></a>
 	</div>
 	<div class="text">
 {# we don't use esacpe because we have our own function in classes/comment.php #}
