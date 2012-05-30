@@ -27,7 +27,7 @@ preg_match('/^[a-z0-9\-]*/', $params[0], $matches);
 $post->permaid = $matches[0];
 
 /* tell google not to index this when it has a query string */
-if ($post->permaid != $params[0]) {
+if ($post->permaid != $params[0] || count($params) > 1) {
 	header('X-Robots-Tag: noindex');
 }
 
