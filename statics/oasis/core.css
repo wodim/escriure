@@ -124,6 +124,7 @@ article a.title {
 }
 
 article img {
+	max-width: 600px;
 	margin: 10px auto;
 	display: block;
 	background: #eee;
