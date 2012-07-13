@@ -136,7 +136,7 @@ article .content .date {
 
 article .content p, li {
 	text-align: justify;
-	margin-bottom: 8px;
+	margin-bottom: 12px;
 }
 
 article .content p:last-child {
@@ -161,7 +161,7 @@ article .content a.title {
 
 article img {
 	max-width: 600px;
-	margin: 10px auto;
+	margin: 18px auto;
 	display: block;
 	background: #eee;
 	padding: 1px;
