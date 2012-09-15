@@ -381,7 +381,7 @@ article p code,
 article ul li code,
 article ol li code {
 	background: #d4d6d7;
-	padding: 4px 2px 0 2px;
+	padding: 2px 3px;
 	border-radius: 2px;
 	/* so it doesn't push the line */
 	line-height: 0;
