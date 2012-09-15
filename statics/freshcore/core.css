@@ -401,7 +401,9 @@ article code {
 	font-size: 9pt;
 }
 
-article p code {
+article p code,
+article ul li code,
+article ol li code {
 	background: #f8f8fa;
 	padding: 4px 2px 0 2px;
 	border-radius: 2px;
