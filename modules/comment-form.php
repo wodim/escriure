@@ -60,7 +60,7 @@ switch ($kind) {
 		$result = $first * $second;
 }
 
-$captcha = sprintf('%s %s %s', scramble($first), scramble($operation), scramble($second));
+$captcha = sprintf('%s&nbsp;%s&nbsp;%s', scramble($first), scramble($operation), scramble($second));
 
 $form['seed'] = rand();
 $form['auth'] = md5(sprintf('%s%s%s', $result, $settings->site_key, $form['seed']));
