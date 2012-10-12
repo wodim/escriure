@@ -18,26 +18,48 @@
 */
 
 /* generate captcha */
+
+function scramble($what) {
+	$scramble = array(
+		0 => array('0', '&#48;'),
+		1 => array('1', '&#49;'),
+		2 => array('2', '&#50;'),
+		3 => array('3', '&#51;'),
+		4 => array('4', '&#52;'),
+		5 => array('5', '&#53;'),
+		6 => array('6', '&#54;'),
+		7 => array('7', '&#55;'),
+		8 => array('8', '&#56;'),
+		9 => array('9', '&#57;'),
+		'add' => array('+', '&#43;'),
+		'sub' => array('+', '&#45;'),
+		'mul' => array('×', '&#215;', '&times;')
+	);
+	return $scramble[$what][rand(0, count($scramble[$what]) - 1)];
+}
+
 $kind = rand(0, 2);
 switch ($kind) {
 	case 0: // add
 		$first = rand(0, 7);
 		$second = rand(0, 7);
+		$operation = 'add';
 		$result = $first + $second;
-		$captcha = sprintf('%s + %s', $first, $second);
 		break;
 	case 1: // sub
 		$first = rand(0, 10);
 		$second = rand(0, $first);
+		$operation = 'sub';
 		$result = $first - $second;
-		$captcha = sprintf('%s - %s', $first, $second);
 		break;
 	case 2: // mul
 		$first = rand(0, 4);
 		$second = rand(0, 4);
+		$operation = 'mul';
 		$result = $first * $second;
-		$captcha = sprintf('%s × %s', $first, $second);
 }
+
+$captcha = sprintf('%s %s %s', scramble($first), scramble($operation), scramble($second));
 
 $form['seed'] = rand();
 $form['auth'] = md5(sprintf('%s%s%s', $result, $settings->site_key, $form['seed']));
