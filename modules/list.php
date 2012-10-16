@@ -29,7 +29,7 @@ if (isset($params[1]) && is_numeric($params[1])) {
 
 $where = sprintf('WHERE db = \'%s\' AND status = \'published\'', $settings->db);
 
-$posts = $db->get_results(sprintf('SELECT %s FROM posts %s ORDER BY date DESC LIMIT %d,%d',
+$posts = $db->get_results(sprintf('SELECT %s FROM posts %s ORDER BY id DESC LIMIT %d,%d',
 	Post::READ, $where, (--$page_number * $settings->page_size), $settings->page_size));
 
 if (!$posts) {

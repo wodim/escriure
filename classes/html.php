@@ -27,8 +27,12 @@ class HTML {
 			(for example, from templates, where we can't use isset),
 			define them */
 		$this->theme_req = new stdClass();
+		// list of latest posts
 		$this->theme_req->latest_posts = false;
+		// custom dates, as in strftime();
 		$this->theme_req->custom_dates = false;
+		// previous/next navigation buttons for each post
+		$this->theme_req->nav_buttons = false;
 
 		$file = sprintf('templates/%s/features.php', $settings->theme);
 		if (file_exists($file)) {
@@ -46,6 +50,9 @@ class HTML {
 					break;
 				case 'custom_dates':
 					$this->theme_req->custom_dates = $value;
+					break;
+				case 'nav_buttons':
+					$this->theme_req->nav_buttons = true;
 					break;
 			}
 		}

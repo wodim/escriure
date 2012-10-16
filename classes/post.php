@@ -20,6 +20,8 @@
 class Post {
 	const READ = 'id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, tags, db, status, comment_count, comment_status';
 	const READ_BY_PERMAID = 'SELECT id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, tags, status, comment_count, comment_status FROM posts WHERE permaid = \'%s\' AND db = \'%s\'';
+	const PREV_POST = 'SELECT permaid, title FROM posts WHERE id < %d AND db = \'%s\' AND status = \'published\' ORDER BY id DESC LIMIT 1';
+	const NEXT_POST = 'SELECT permaid, title FROM posts WHERE id > %d AND db = \'%s\' AND status = \'published\' ORDER BY id ASC LIMIT 1';
 
 	var $read = false;
 	var $id = 0;
@@ -40,6 +42,7 @@ class Post {
 	var $warning = '';
 	var $listing = false;
 	var $cdate = null;
+	var $nav_buttons = false;
 
 	function read($results = null) {
 		global $db, $settings, $session, $html;
@@ -69,6 +72,24 @@ class Post {
 		if ($html->theme_req->custom_dates) {
 			$this->cdate = new stdClass();
 			$this->populate_cdate();
+		}
+		if ($html->theme_req->nav_buttons) {
+			$this->nav_buttons = new stdClass();
+			$this->nav_buttons->prev = $this->nav_buttons->next = null;
+
+			$prev = $db->get_row(sprintf(Post::PREV_POST, $this->id, $this->db));
+			if ($prev) {
+				$this->nav_buttons->prev = new stdClass();
+				$this->nav_buttons->prev->permaid = $prev->permaid;
+				$this->nav_buttons->prev->title = $prev->title;
+			}
+
+			$next = $db->get_row(sprintf(Post::NEXT_POST, $this->id, $this->db));
+			if ($next) {
+				$this->nav_buttons->next = new stdClass();
+				$this->nav_buttons->next->permaid = $next->permaid;
+				$this->nav_buttons->next->title = $next->title;
+			}
 		}
 		$this->text = str_replace("\n", '', $this->text);
 		if ($this->comment_status == 'closed') {
