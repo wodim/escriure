@@ -39,9 +39,10 @@ class Post {
 	/* shows a warning such as "comments closed", "mail reuiqred" */
 	var $warning = '';
 	var $listing = false;
+	var $cdate = null;
 
 	function read($results = null) {
-		global $db, $settings, $session;
+		global $db, $settings, $session, $html;
 
 		/* we may already have results (eg. when called from list.php)
 			but maybe we do not, so fetch from the db */
@@ -65,6 +66,10 @@ class Post {
 
 		$this->permalink = sprintf('%s%s', $settings->url, $this->permaid);
 		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->ts);
+		if ($html->theme_req->custom_dates) {
+			$this->cdate = new stdClass();
+			$this->populate_cdate();
+		}
 		$this->text = str_replace("\n", '', $this->text);
 		if ($this->comment_status == 'closed') {
 			$this->warning = _('Comments for this post are closed.');
@@ -107,6 +112,15 @@ class Post {
 			$this->warning = sprintf('%s<br />%s', $this->warning, $text);
 		} else {
 			$this->warning = $text;
+		}
+	}
+
+	function populate_cdate() {
+		global $html;
+
+		$formats = str_split($html->theme_req->custom_dates);
+		foreach ($formats as $format) {
+			$this->cdate->$format = strftime(sprintf('%%%s', $format), $this->ts);
 		}
 	}
 }

@@ -56,7 +56,7 @@ Haanga::configure(array(
 	'template_dir' => 'templates/',
 	'cache_dir' => 'templates/compiled/',
 	'compiler' => array(
-		'global' => array('settings', 'session'),
+		'global' => array('settings', 'session', 'html'),
 		'strip_whitespace' => true,
 		'allow_exec' => false,
 		'autoescape' => false
@@ -66,6 +66,7 @@ Haanga::configure(array(
 // initialize the html engine
 require(classes_dir.'html.php');
 $html = new HTML();
+$html->init();
 
 // initiailze session
 require(classes_dir.'session.php');

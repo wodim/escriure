@@ -18,20 +18,52 @@
 */
 
 class HTML {
+	var $theme_req = null;
+
+	function init() {
+		global $settings, $db;
+
+		/* since we want to be able to know whether these have been enabled,
+			(for example, from templates, where we can't use isset),
+			define them */
+		$this->theme_req = new stdClass();
+		$this->theme_req->latest_posts = false;
+		$this->theme_req->custom_dates = false;
+
+		$file = sprintf('templates/%s/features.php', $settings->theme);
+		if (file_exists($file)) {
+			require($file);
+		} else {
+			return;
+		}
+
+		foreach ($features as $feature => $value) {
+			switch ($feature) {
+				case 'latest_posts':
+					$this->theme_req->latest_posts = $db->get_results(sprintf('SELECT permaid, title FROM posts
+						WHERE db = \'%s\' AND status = \'published\'
+						ORDER BY date DESC LIMIT %s', $settings->db, $settings->page_size * 2));
+					break;
+				case 'custom_dates':
+					$this->theme_req->custom_dates = $value;
+					break;
+			}
+		}
+	}
+
 	function do_header($title = null) {
 		global $session, $settings;
 
 		header('Content-Type: text/html; charset=utf-8');
 		$this->check_browser();
-		$vars = compact('title', 'session');
+		$vars = compact('title');
 		Haanga::Load(sprintf('%s/header.html', $settings->theme), $vars);
 	}
 
 	function do_footer() {
 		global $start, $db, $session, $settings;
 
-		$vars = compact('session');
-		Haanga::Load(sprintf('%s/footer.html', $settings->theme), $vars);
+		Haanga::Load(sprintf('%s/footer.html', $settings->theme));
 		printf('<!-- %.4f - %d -->', (microtime(true) - $start), $db->num_queries);
 	}
 
