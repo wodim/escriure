@@ -125,7 +125,8 @@ class Comment {
 			mail(sprintf('%s admin <%s>', $settings->title, $settings->admin_mail),
 				sprintf('[%s] New comment on %s', $settings->title, $this->post->title),
 				$mail,
-				sprintf('From: %s <%s>', $settings->title, $settings->mail));
+				sprintf("From: %s <%s>\nReturn-Path: <%s>",
+					$settings->title, $settings->mail, $settings->mail));
 		}
 		return true;
 	}
