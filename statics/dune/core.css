@@ -367,7 +367,7 @@ dl.comment-form dd input[name=captcha] {
 }
 
 dl.comment-form dd textarea {
-	width: 400px;
+	width: 500px;
 	height: 100px;
 }
 
