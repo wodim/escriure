@@ -45,7 +45,7 @@ msgstr "%e de %B"
 
 #: classes/post.php:67 classes/comment.php:65
 msgid "%m/%d %I:%M %P"
-msgstr "%e de %b a las %H:%M"
+msgstr "%e de %b %H:%M"
 
 #: classes/html.php:46 classes/html.php:48
 msgid "« prev"

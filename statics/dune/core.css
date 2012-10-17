@@ -305,9 +305,9 @@ div.comment, dl.comment-form {
 }
 
 div.comment .meta, dl.comment-form dt {
-	width: 150px;
+	width: 130px;
 	float: left;
-	padding: 6px 8px;
+	padding: 8px 6px;
 	text-align: right;
 }
 
@@ -326,14 +326,14 @@ div.comment .meta .date {
 }
 
 div.comment .text, dl.comment-form dd {
-	border-left: 1px solid #eee;
-	padding: 5px 8px;
-	margin-left: 165px;
+	border-left: 1px solid #c7cdd0;
+	padding: 8px 12px;
+	margin-left: 150px;
 	min-height: 40px;
 }
 
 div.comment .text blockquote {
-	margin-top: 8px;
+	margin: 8px 0 0 8px;
 	font-style: italic;
 }
 
