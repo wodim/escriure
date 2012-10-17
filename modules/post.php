@@ -35,7 +35,7 @@ if (!$post->read() || $post->status != 'published' || $post->db != $settings->db
 	$html->do_sysmsg(_('No such post'), null, 404);
 }
 
-if (is_posting(array('nick', 'mail', 'captcha', 'auth', 'seed', 'text'))) {
+if (is_posting(array('nick', 'mail', 'name', 'auth', 'seed', 'text'))) {
 	require(modules_dir.'comment-store.php');
 }
 

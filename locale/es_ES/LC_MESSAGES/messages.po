@@ -9,7 +9,7 @@ msgstr "Página no encontrada"
 #: modules/comment-form.php:44
 #, php-format
 msgid "Result of <strong>%s</strong>?"
-msgstr "¿Resultado de <strong>%s</strong>?"
+msgstr "¿Cuánto es %s?"
 
 #: modules/comment-store.php:21
 msgid "Comments for this post were closed while you were writing this one."

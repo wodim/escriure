@@ -45,7 +45,8 @@ if (!$text) {
 	we generate an aritmethic operation, say, 3+3.
 	we generate a random number, the seed.
 	then we store the value in a hidden field, called auth: md5(result.site_key.seed) */
-if (md5(sprintf('%s%s%s', (int)$_POST['captcha'], $settings->site_key, $_POST['seed'])) !=
+if (!is_numeric($_POST['name']) ||
+		md5(sprintf('%s%s%s', (int)$_POST['name'], $settings->site_key, $_POST['seed'])) !=
 		$_POST['auth']) {
 	$post->add_warning(_('The result of the operation is not valid! Was it too hard for you?'));
 }

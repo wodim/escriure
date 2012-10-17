@@ -10,7 +10,7 @@
 <dl class="comment-form" id="comment-form">
 	<dt>{% trans _('Your name:') %}</dt>
 	<dd><input type="text" name="nick" value="{% if form.nick %}{{form.nick}}{% endif %}" /></dd>
-        <div style="display: none;">
+	<div style="display: none;">
 		<dt>{% trans _('Your e-mail (optional):') %}</dt>
 		<dd><input type="email" name="mail" value="{% if form.mail %}{{form.mail}}{% endif %}" /></dd>
 		<dt>{% trans _('Your website (optional):') %}</dt>
@@ -19,7 +19,7 @@
 	<dt>{% trans _('Your comment:') %}</dt>
 	<dd><textarea name="text">{% if form.nick %}{{form.text}}{% endif %}</textarea></dd>
 	<dt>{{form.captcha}}</dt>
-	<dd><input type="text" name="captcha" maxlength="2" autocomplete="off" /></dd>
+	<dd><input type="text" name="name" maxlength="2" autocomplete="off" /></dd>
 	<dt></dt>
 	<dd><input type="submit" class="rbutton" value="{% trans _('Send comment') %}" />
 </dl>

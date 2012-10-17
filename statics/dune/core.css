@@ -362,7 +362,7 @@ dl.comment-form dd textarea:hover {
 	border: 1px solid #b5babd;
 }
 
-dl.comment-form dd input[name=captcha] {
+dl.comment-form dd input[name=name] {
 	width: 30px;
 }
 
