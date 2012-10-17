@@ -29,7 +29,7 @@ if ($comments) {
 	foreach ($comments as $this_comment) {
 		$comment->read($this_comment);
 		++$comment->order;
-		$comment->poster = $post->nick;
+		$comment->post = $post;
 		$comment->output();
 	}
 }

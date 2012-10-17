@@ -40,7 +40,7 @@ class Comment {
 	var $url_safe = '';
 	var $hdate = '';
 	var $order = '';
-	var $poster = '';
+	var $post = '';
 
 	function read($results = null) {
 		global $db, $settings, $session;
@@ -112,6 +112,21 @@ class Comment {
 		$db->query(sprintf('UPDATE posts SET comment_count = comment_count + 1 WHERE id = %d', 
 			$post_id));
 
+		// send mail
+		if ($settings->admin_mail) {
+			$mail = sprintf(
+				'%s has posted a new comment on "%s":'."\n\n".
+				'%s'."\n\n".
+				'You can read it here:'."\n".
+				'%s%s#comments',
+				$nick, $this->post->title, $text, $settings->url,
+					$this->post->permaid);
+			$mail = wordwrap($mail, 70);
+			mail(sprintf('%s admin <%s>', $settings->title, $settings->admin_mail),
+				sprintf('[%s] New comment on %s', $settings->title, $this->post->title),
+				$mail,
+				sprintf('From: %s <%s>', $settings->title, $settings->mail));
+		}
 		return true;
 	}
 }

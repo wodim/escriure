@@ -21,7 +21,8 @@ class Settings {
    const READ = 'SELECT domain, lang, locale, `collate`,
 	analytics_enabled, analytics_code,
 	url, statics_url, db, title,
-	page_size, robots, mail, theme, site_key, meta_json
+	page_size, robots, mail, theme, site_key, meta_json,
+	admin_mail
 	FROM sites WHERE domain = \'%s\'';
 	/* we are entitled to add reasonable defaults here!! */
 	var $domain = '';
@@ -41,6 +42,7 @@ class Settings {
 	var $site_key = '';
 	var $meta_json = '';
 	var $meta = '';
+	var $admin_mail = '';
 
 	var $read = false;
 

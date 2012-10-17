@@ -14,7 +14,7 @@
 		<p>{{comment.text}}</p>
 {% if comment.reply %}
 		<blockquote>
-			{{comment.reply}} — {{comment.poster}}
+			{{comment.reply}} — {{comment.post.nick}}
 		</blockquote>
 {% endif %}
 	</div>

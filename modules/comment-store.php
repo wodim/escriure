@@ -61,6 +61,7 @@ if (!$post->warning) {
 	$comment->status = 'shown';
 	/* we don't need to check whether this post exists, it's already done in post.php */
 	$comment->post_id = $post_id;
+	$comment->post = $post;
 	$comment->store();
 	redir(sprintf('/%s#comment-%d', $post->permaid, $post->comment_count + 1));
 } else {

@@ -46,9 +46,10 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `title` varchar(32) NOT NULL,
   `page_size` int(11) NOT NULL,
   `robots` enum('allow','disallow') NOT NULL,
-  `mail` varchar(32) NOT NULL,
+  `mail` varchar(64) NOT NULL,
   `site_key` varchar(32) NOT NULL,
   `meta_json` text NOT NULL,
+  `admin_mail` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
