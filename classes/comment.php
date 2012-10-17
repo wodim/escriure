@@ -126,7 +126,8 @@ class Comment {
 				sprintf('[%s] New comment on %s', $settings->title, $this->post->title),
 				$mail,
 				sprintf("From: %s <%s>\nReturn-Path: <%s>",
-					$settings->title, $settings->mail, $settings->mail));
+					$settings->title, $settings->mail, $settings->mail),
+				sprintf('-f%s', $settings->mail));
 		}
 		return true;
 	}
