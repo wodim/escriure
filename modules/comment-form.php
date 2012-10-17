@@ -33,7 +33,7 @@ function scramble($what) {
 		9 => array('9', '&#57;'),
 		10 => array('10', '&#49;&#48;'),
 		'add' => array('+', '&#43;'),
-		'sub' => array('+', '&#45;'),
+		'sub' => array('-', '&#45;'),
 		'mul' => array('×', '&#215;', '&times;')
 	);
 	return $scramble[$what][rand(0, count($scramble[$what]) - 1)];
