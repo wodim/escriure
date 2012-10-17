@@ -17,7 +17,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$config['db']['user'] = 'escriure';
-$config['db']['pass'] = 'escriure';
-$config['db']['name'] = 'escriure';
-$config['db']['host'] = 'localhost';
+$config['db']['user'] = '';
+$config['db']['pass'] = '';
+$config['db']['name'] = '';
+$config['db']['host'] = '';
