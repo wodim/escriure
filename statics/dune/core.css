@@ -337,6 +337,10 @@ div.comment .text blockquote {
 	color: #666;
 }
 
+dl.comment-form dt {
+	padding: 6px 10px;
+}
+
 dl.comment-form dd {
 	padding: 2px;
 	border-left: 0 none;
