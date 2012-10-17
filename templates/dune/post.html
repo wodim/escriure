@@ -1,4 +1,4 @@
-<article>
+<div class="article">
 	<div class="content">
 		<a class="date" href="{{post.permalink}}" title="Publicado el {{post.hdate|escape}} por {{post.nick|escape}}">
 			<span class="day">{{post.cdate.e}}</span>
@@ -26,7 +26,7 @@
 {% endif %}
 	<div class="clearit"></div>
 	</div>
-</article>
+</div>
 {% if post.warning && !post.listing && post.comment_status == 'closed' %}
 <div class="warning">
 	{{post.warning}}

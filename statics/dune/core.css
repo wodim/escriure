@@ -73,7 +73,7 @@ a:hover {
 	color: #111;
 }
 
-header a {
+div.header a {
 	font: 24pt 'Arial', sans-serif;
 	font-weight: bold;
 	width: 785px;
@@ -85,16 +85,16 @@ header a {
 	line-height: 65px;
 }
 
-header a:hover {
+div.header a:hover {
 	color: white;
 }
 
-section {
+div.section {
 	width: 925px;
 	margin: 0 auto 30px;
 }
 
-section .sidebar {
+div.section .sidebar {
 	float: right;
 	width: 200px;
 	background: #d7dde0;
@@ -107,25 +107,25 @@ section .sidebar {
 	padding: 16px;
 }
 
-section .sidebar h5 {
+div.section .sidebar h5 {
 	font-weight: bold;
 	margin-bottom: 3px;
 	margin-top: 10px;
 }
 
-section .sidebar ul {
+div.section .sidebar ul {
 	list-style-position: inside;
 	margin-left: 10px;
 }
 
-section .sidebar ul li {
+div.section .sidebar ul li {
 	margin-bottom: 3px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
-section div.articles {
+div.section div.articles {
 	padding: 15px;
 	margin: 0 210px 0 0;
 	background: #e9eff2;
@@ -136,11 +136,11 @@ section div.articles {
 	min-height: 400px;
 }
 
-article {
+div.article {
 	margin-bottom: 25px;
 }
 
-article .content .date {
+div.article .content .date {
 	display: block;
 	background: black;
 	width: 42px;
@@ -149,41 +149,41 @@ article .content .date {
 	float: left;
 }
 
-article .content .date .day,
-article .content .date .month {
+div.article .content .date .day,
+div.article .content .date .month {
 	display: block;
 	text-align: center;
 	color: #e9eff2;
 }
 
-article .content .date .day {
+div.article .content .date .day {
 	font-size: 18pt;
 	letter-spacing: -3px;
 	padding: 7px 3px 0 0;
 	font-weight: bold;
 }
 
-article .content .date .month {
+div.article .content .date .month {
 	text-transform: uppercase;
 	padding: 1px 0 0 0;
 	font-size: 8pt;
 }
 
-article .content p, li {
+div.article .content p, li {
 	text-align: justify;
 	margin-bottom: 12px;
 }
 
-article .content p:last-child {
+div.article .content p:last-child {
 	margin: 0;
 }
 
-article .content .text {
+div.article .content .text {
 	line-height: 150%;
 	padding: 0 15px 0 55px;
 }
 
-article .content a.title {
+div.article .content a.title {
 	font-size: 12pt;
 	color: #202020;
 	text-decoration: none;
@@ -193,7 +193,7 @@ article .content a.title {
 	padding: 2px 0 0 55px;
 }
 
-article img {
+div.article img {
 	max-width: 600px;
 	margin: 18px auto;
 	display: block;
@@ -207,12 +207,12 @@ ol, ul {
 	list-style: disc;
 }
 
-article .meta a.comments {
+div.article .meta a.comments {
 	display: inline-block;
 	margin: 15px 0 0 55px;
 }
 
-article .meta a.comments,
+div.article .meta a.comments,
 dl.comment-form dd input[type="submit"] {
 	opacity: 0.9;
 }
@@ -258,7 +258,7 @@ section.archive p {
 	margin-left: 20px;
 }
 
-article blockquote, pre {
+div.article blockquote, pre {
 	border-left: 5px solid #c7cdd0;
 	color: #666;
 	margin: 0 0 12px 12px;
@@ -269,21 +269,21 @@ li blockquote {
 	margin: 8px 0 8px 12px;
 }
 
-article h1,
-article h2,
-article h3,
-article h4,
-article h5,
-article h6 {
+div.article h1,
+div.article h2,
+div.article h3,
+div.article h4,
+div.article h5,
+div.article h6 {
 	font-weight: bold;
 	margin-bottom: 8px;
 }
 
-article h3 {
+div.article h3 {
 	font-size: 13pt;
 }
 
-article h4 {
+div.article h4 {
 	font-size: 11pt;
 }
 
@@ -296,34 +296,34 @@ div.warning {
 	margin-top: -8px;
 }
 
-aside.comment, dl.comment-form {
+div.comment, dl.comment-form {
 	clear: both;
 	margin-bottom: 10px;
 	overflow: hidden;
 }
 
-aside.comment .meta, dl.comment-form dt {
+div.comment .meta, dl.comment-form dt {
 	width: 150px;
 	float: left;
 	padding: 6px 8px;
 	text-align: right;
 }
 
-aside.comment .meta span {
+div.comment .meta span {
 	display: block;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-aside.comment .meta .nick {
+div.comment .meta .nick {
 	font-weight: bold;
 }
 
-aside.comment .meta .date {
+div.comment .meta .date {
 	font-size: 8pt;
 }
 
-aside.comment .text, dl.comment-form dd {
+div.comment .text, dl.comment-form dd {
 	border-left: 1px solid #eee;
 	padding: 5px 8px;
 	margin-left: 165px;
@@ -372,14 +372,14 @@ dl.comment-form dd input[type=submit]:hover {
 	background-position: 0 30px;
 }
 
-article code {
+div.article code {
 	font-family: 'Consolas', 'Ubuntu Mono', 'Liberation Mono', 'Lucida Console', monospace;
 	font-size: 9pt;
 }
 
-article p code,
-article ul li code,
-article ol li code {
+div.article p code,
+div.article ul li code,
+div.article ol li code {
 	background: #d4d6d7;
 	padding: 2px 3px;
 	border-radius: 2px;
@@ -387,30 +387,30 @@ article ol li code {
 	line-height: 0;
 }
 
-article pre {
+div.article pre {
 	overflow-x: auto;
 	width: 580px;
 }
 
-article pre code {
+div.article pre code {
 	font-size: 8pt;
 	line-height: 8px;
 }
 
-article pre::-webkit-scrollbar {
+div.article pre::-webkit-scrollbar {
 	height: 6px;
 }
  
-article pre::-webkit-scrollbar-track {
+ div.article pre::-webkit-scrollbar-track {
 	background: #fafafa;
 }
 
-article pre::-webkit-scrollbar-thumb {
+div.article pre::-webkit-scrollbar-thumb {
 	background: #c7cdd0;
 }
 
-article pre::-webkit-scrollbar-track,
-article pre::-webkit-scrollbar-thumb {
+div.article pre::-webkit-scrollbar-track,
+div.article pre::-webkit-scrollbar-thumb {
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
 }
@@ -420,7 +420,7 @@ div.clearit {
 }
 
 .rbutton,
-section .sidebar .nav_buttons a {
+div.section .sidebar .nav_buttons a {
 	font: 8pt 'Verdana', 'Tahoma', 'Arial', sans-serif;
 	background: #c7cdd0;
 	border-radius: 2px;
@@ -437,13 +437,13 @@ section .sidebar .nav_buttons a {
 	color: #646769;
 }
 
-section .sidebar .nav_buttons a {
+div.section .sidebar .nav_buttons a {
 	display: inline-block;
 	width: 76px;
 	margin-top: 10px;
 }
 
-footer {
+div.footer {
 	text-align: center;
 	font-size: 8pt;
 	font-weight: bold;

@@ -34,10 +34,10 @@
 {% endif %}
 	</head>
 	<body>
-		<header>
+		<div class="header">
 			<a class="blog" href="/">{{settings.title}}</a>
-		</header>
-		<section>
+		</div>
+		<div class="section">
 			<div class="sidebar">
 				<span>{{settings.meta.description}}</span>
 {% if settings.meta.social %}
@@ -65,8 +65,8 @@
 				</div>
 {% endif %}
 
-			<footer>
+			<div class="footer">
 				<a href="{{settings.url}}rss">RSS</a> — <a href="{{settings.url}}archive">Archivo de posts</a>
-			</footer>
+			</div>
 			</div>
 			<div class="articles">

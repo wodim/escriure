@@ -20,5 +20,6 @@
 $features = array(
 		'latest_posts' => true,
 		'custom_dates' => 'eb',
-		'nav_buttons' => true
+		'nav_buttons' => true,
+		'html4_compat' => true
 	);

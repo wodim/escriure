@@ -33,6 +33,8 @@ class HTML {
 		$this->theme_req->custom_dates = false;
 		// previous/next navigation buttons for each post
 		$this->theme_req->nav_buttons = false;
+		// html4 compatible (this is, no html5 tags)
+		$this->theme_req->html4_compat = false;
 
 		$file = sprintf('templates/%s/features.php', $settings->theme);
 		if (file_exists($file)) {
@@ -54,6 +56,9 @@ class HTML {
 				case 'nav_buttons':
 					$this->theme_req->nav_buttons = new stdClass();
 					break;
+				case 'html4_compat':
+					$this->theme_req->html4_compat = $value;
+					break;
 			}
 		}
 	}
@@ -62,7 +67,9 @@ class HTML {
 		global $session, $settings;
 
 		header('Content-Type: text/html; charset=utf-8');
-		$this->check_browser();
+		if ($this->theme_req->html4_compat == false) {
+			$this->check_browser();
+		}
 		$vars = compact('title');
 		Haanga::Load(sprintf('%s/header.html', $settings->theme), $vars);
 	}

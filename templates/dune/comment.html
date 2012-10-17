@@ -1,4 +1,4 @@
-<aside class="comment" id="comment-{{comment.order}}">
+<div class="comment" id="comment-{{comment.order}}">
 	<div class="meta">
 {#	<img src="{{comment.avatar}}" /> #}
 {% if comment.url %}
@@ -13,4 +13,4 @@
 {# we don't use esacpe because we have our own function in classes/comment.php #}
 		<p>{{comment.text}}</p>
 	</div>
-</aside>
+</div>
