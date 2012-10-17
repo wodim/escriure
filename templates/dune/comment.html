@@ -12,5 +12,10 @@
 	<div class="text">
 {# we don't use esacpe because we have our own function in classes/comment.php #}
 		<p>{{comment.text}}</p>
+{% if comment.reply %}
+		<blockquote>
+			{{comment.reply}} — {{comment.poster}}
+		</blockquote>
+{% endif %}
 	</div>
 </div>

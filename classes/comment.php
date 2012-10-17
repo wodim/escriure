@@ -18,9 +18,9 @@
 */
 
 class Comment {
-	const READ = 'id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db';
-	const READ_BY_ID = 'SELECT id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db FROM comments WHERE id = \'%s\' AND db = \'%s\'';
-	const READ_BY_POST_ID = 'SELECT id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db FROM comments WHERE post_id = \'%s\' AND db = \'%s\'';
+	const READ = 'id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db, reply';
+	const READ_BY_ID = 'SELECT id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db, reply FROM comments WHERE id = \'%s\' AND db = \'%s\'';
+	const READ_BY_POST_ID = 'SELECT id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db, reply FROM comments WHERE post_id = \'%s\' AND db = \'%s\'';
 
 	var $read = false;
 	var $id = 0;
@@ -34,11 +34,13 @@ class Comment {
 	var $post_id = 0;
 	var $parent = 0;
 	var $db = '';
+	var $reply = '';
 
 	var $avatar = '';
 	var $url_safe = '';
 	var $hdate = '';
 	var $order = '';
+	var $poster = '';
 
 	function read($results = null) {
 		global $db, $settings, $session;

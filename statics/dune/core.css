@@ -258,7 +258,9 @@ section.archive p {
 	margin-left: 20px;
 }
 
-div.article blockquote, pre {
+div.comment .text blockquote,
+div.article blockquote,
+pre {
 	border-left: 5px solid #c7cdd0;
 	color: #666;
 	margin: 0 0 12px 12px;
@@ -328,6 +330,11 @@ div.comment .text, dl.comment-form dd {
 	padding: 5px 8px;
 	margin-left: 165px;
 	min-height: 40px;
+}
+
+div.comment .text blockquote {
+	margin-top: 8px;
+	font-style: italic;
 }
 
 dl.comment-form dd {
