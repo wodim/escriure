@@ -101,7 +101,7 @@ class Comment {
 		$nick = clean($this->nick, 16, true);
 		$mail = clean($this->mail, 64, true);
 		$url = clean($this->url, 128, true);
-		$text = clean($this->text, 1000, true);
+		$text = clean($this->text, 10000, true);
 		$post_id = (int)$this->post_id;
 		$parent = (int)$this->parent;
 
@@ -119,8 +119,7 @@ class Comment {
 				'%s'."\n\n".
 				'You can read it here:'."\n".
 				'%s%s#comments',
-				$nick, $this->post->title, $text, $settings->url,
-					$this->post->permaid);
+				$nick, $this->post->title, $text, $settings->url, $this->post->permaid);
 			$mail = wordwrap($mail, 70);
 			mail(sprintf('%s admin <%s>', $settings->title, $settings->admin_mail),
 				sprintf('[%s] New comment on %s', $settings->title, $this->post->title),
