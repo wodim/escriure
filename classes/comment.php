@@ -80,6 +80,7 @@ class Comment {
 		$comment->text = $this->text_clean($comment->text);
 
 		$vars = compact('comment');
+
 		Haanga::Load(sprintf('%s/comment.html', $settings->theme), $vars);
 
 		return true;

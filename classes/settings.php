@@ -21,7 +21,7 @@ class Settings {
    const READ = 'SELECT domain, lang, locale, `collate`,
 	analytics_enabled, analytics_code,
 	url, statics_url, db, title,
-	page_size, robots, mail, theme, site_key
+	page_size, robots, mail, theme, site_key, meta_json
 	FROM sites WHERE domain = \'%s\'';
 	/* we are entitled to add reasonable defaults here!! */
 	var $domain = '';
@@ -39,6 +39,8 @@ class Settings {
 	var $mail = '';
 	var $theme = 'oasis';
 	var $site_key = '';
+	var $meta_json = '';
+	var $meta = '';
 
 	var $read = false;
 
@@ -56,6 +58,8 @@ class Settings {
 		foreach (get_object_vars($results) as $variable => $value) {
 			$this->$variable = $value;
 		}
+
+		$this->meta = @json_decode($this->meta_json);
 
 		$this->read = true;
 		return true;

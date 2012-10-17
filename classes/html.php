@@ -52,7 +52,7 @@ class HTML {
 					$this->theme_req->custom_dates = $value;
 					break;
 				case 'nav_buttons':
-					$this->theme_req->nav_buttons = true;
+					$this->theme_req->nav_buttons = new stdClass();
 					break;
 			}
 		}

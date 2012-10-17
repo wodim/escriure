@@ -74,21 +74,21 @@ class Post {
 			$this->populate_cdate();
 		}
 		if ($html->theme_req->nav_buttons) {
-			$this->nav_buttons = new stdClass();
-			$this->nav_buttons->prev = $this->nav_buttons->next = null;
+			$html->theme_req->nav_buttons->available = true;
+			$html->theme_req->nav_buttons->prev = $html->theme_req->nav_buttons->next = null;
 
 			$prev = $db->get_row(sprintf(Post::PREV_POST, $this->id, $this->db));
 			if ($prev) {
-				$this->nav_buttons->prev = new stdClass();
-				$this->nav_buttons->prev->permaid = $prev->permaid;
-				$this->nav_buttons->prev->title = $prev->title;
+				$html->theme_req->nav_buttons->prev = new stdClass();
+				$html->theme_req->nav_buttons->prev->permaid = $prev->permaid;
+				$html->theme_req->nav_buttons->prev->title = $prev->title;
 			}
 
 			$next = $db->get_row(sprintf(Post::NEXT_POST, $this->id, $this->db));
 			if ($next) {
-				$this->nav_buttons->next = new stdClass();
-				$this->nav_buttons->next->permaid = $next->permaid;
-				$this->nav_buttons->next->title = $next->title;
+				$html->theme_req->nav_buttons->next = new stdClass();
+				$html->theme_req->nav_buttons->next->permaid = $next->permaid;
+				$html->theme_req->nav_buttons->next->title = $next->title;
 			}
 		}
 		$this->text = str_replace("\n", '', $this->text);

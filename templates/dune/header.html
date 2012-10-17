@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+{% if title %}
+		<title>{{title}} - {{settings.title}}</title>
+{% else %}
+		<title>{{settings.title}}</title>
+{% endif %}
+{% if session.sysmsg %}
+		<meta name="robots" content="noindex,nofollow" />
+{% endif %}
+{% if session.tags %}
+		<meta name="keywords" content="{{session.tags|escape}}" />
+{% endif %}
+{% if session.description %}
+		<meta name="description" content="{{session.description|escape}}" />
+{% endif %}
+		<link rel="stylesheet" type="text/css" media="all" href="{{settings.statics_url}}{{settings.theme}}/core.css?5" />
+		<link rel="shortcut icon" href="{{settings.statics_url}}{{settings.theme}}/escriure.png" type="image/x-png"/>
+		<link rel="alternate" type="application/rss+xml" title="{{settings.title}}" href="{{settings.url}}rss" />
+{% if settings.analytics_enabled %}
+		<script>
+			var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', '{{settings.analytics_code}}']);
+				_gaq.push(['_setCustomVar', 1, 'ip', '{{session.ip}}']);
+				_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.async = true; ga.src = '{{settings.statics_url}}ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+{% endif %}
+	</head>
+	<body>
+		<header>
+			<a class="blog" href="/">{{settings.title}}</a>
+		</header>
+		<section>
+			<div class="sidebar">
+				<span>{{settings.meta.description}}</span>
+{% if settings.meta.social %}
+				<h5>En otros lados</h5>
+				<ul>
+	{% for net in settings.meta.social %}
+					<li><a href="{{net.url}}" target="_blank">{{net.title}}</a></li>
+	{% endfor %}
+				</ul>
+{% endif %}
+				<h5>Últimos posts</h5>
+				<ul>
+{% for post in html.theme_req.latest_posts %}
+					<li><a href="/{{post.permaid}}" title="{{post.title|escape}}">{{post.title}}</a></li>
+{% endfor %}
+				</ul>
+{% if html.theme_req.nav_buttons.available %}
+				<div class="nav_buttons">
+	{% if html.theme_req.nav_buttons.prev %}
+					<a href="/{{html.theme_req.nav_buttons.prev.permaid}}" title="{{html.theme_req.nav_buttons.prev.title|escape}}">« anterior</a>
+	{% endif %}
+	{% if html.theme_req.nav_buttons.next %}
+					<a href="/{{html.theme_req.nav_buttons.next.permaid}}" title="{{html.theme_req.nav_buttons.next.title|escape}}">siguiente »</a>
+	{% endif %}
+				</div>
+{% endif %}
+
+			<footer>
+				<a href="{{settings.url}}rss">RSS</a> — <a href="{{settings.url}}archive">Archivo de posts</a>
+			</footer>
+			</div>
+			<div class="articles">
