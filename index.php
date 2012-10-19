@@ -47,8 +47,14 @@ switch ($params[0]) {
 		break;
 	case 'page':
 	case 'home':
+		$module = 'list';
 		require(modules_dir.'list.php');
 		break;
 	default:
+		$module = 'post';
 		require(modules_dir.'post.php');
+}
+
+if (!isset($module)) {
+	$module = $params[0];
 }

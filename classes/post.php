@@ -45,7 +45,7 @@ class Post {
 	var $nav_buttons = false;
 
 	function read($results = null) {
-		global $db, $settings, $session, $html;
+		global $db, $settings, $session, $html, $module;
 
 		/* we may already have results (eg. when called from list.php)
 			but maybe we do not, so fetch from the db */
@@ -73,7 +73,7 @@ class Post {
 			$this->cdate = new stdClass();
 			$this->populate_cdate();
 		}
-		if ($html->theme_req->nav_buttons) {
+		if ($html->theme_req->nav_buttons && $module == 'post') {
 			$html->theme_req->nav_buttons->available = true;
 			$html->theme_req->nav_buttons->prev = $html->theme_req->nav_buttons->next = null;
 
