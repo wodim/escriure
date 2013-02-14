@@ -22,6 +22,7 @@ class Session {
 	var $ip = '';
 	var $tags = null;
 	var $description = null;
+	var $canonical = null;
 
 	function init() {
 		$this->ip = $_SERVER['REMOTE_ADDR'];

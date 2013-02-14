@@ -38,6 +38,7 @@ if (!$posts) {
 }
 
 ++$page_number;
+$session->canonical = ($page_number == 1) ? $settings->url : sprintf('%spage/%d', $settings->url, $page_number);
 
 $html->do_header();
 $rows = $db->get_var('SELECT COUNT(1) FROM posts WHERE db = :db AND status = \'published\'', array(
