@@ -18,8 +18,8 @@
 */
 
 class Post {
-	const READ = 'id, permaid, nick, timestamp, title, text, tags, db, status, comment_count, comment_status';
-	const READ_BY_PERMAID = 'SELECT id, permaid, nick, timestamp, title, text, db, tags, status, comment_count, comment_status FROM posts WHERE permaid = :permaid AND db = :db';
+	const READ = 'id, permaid, nick, timestamp, title, text_html, text_markdown, text_type, tags, db, status, comment_count, comment_status';
+	const READ_BY_PERMAID = 'SELECT id, permaid, nick, timestamp, title, text_html, text_markdown, text_type, db, tags, status, comment_count, comment_status FROM posts WHERE permaid = :permaid AND db = :db';
 	const PREV_POST = 'SELECT permaid, title FROM posts WHERE id < :id AND db = :db AND status = \'published\' ORDER BY id DESC LIMIT 1';
 	const NEXT_POST = 'SELECT permaid, title FROM posts WHERE id > :id AND db = :db AND status = \'published\' ORDER BY id ASC LIMIT 1';
 
@@ -29,7 +29,9 @@ class Post {
 	var $nick = '';
 	var $timestamp = '';
 	var $title = '';
-	var $text = '';
+	var $text_html = '';
+	var $text_markdown = '';
+	var $text_type = 'html';
 	var $tags = '';
 	var $db = '';
 	var $status = 'draft';
@@ -45,7 +47,7 @@ class Post {
 	var $nav_buttons = false;
 
 	function read($results = null) {
-		global $db, $settings, $session, $html, $module;
+		global $db, $settings, $session, $html, $module, $markdown;
 
 		/* we may already have results (eg. when called from list.php)
 			but maybe we do not, so fetch from the db */
@@ -99,7 +101,17 @@ class Post {
 				$html->theme_req->nav_buttons->next->title = $next['title'];
 			}
 		}
-		$this->text = str_replace("\n", '', $this->text);
+
+		/* markdown conversion */
+		if ($this->text_type == 'markdown') {
+			$this->text_html = $markdown->render($this->text_markdown);
+			$db->query('UPDATE posts SET text_html = :text_html, text_type = \'html\' WHERE id = :id', array(
+				array(':text_html', $this->text_html, PDO::PARAM_STR),
+				array(':id', $this->id, PDO::PARAM_INT)
+			));
+		}
+
+		$this->text_html = str_replace("\n", '', $this->text_html);
 		if ($this->comment_status == 'closed') {
 			$this->warning = _('Comments for this post are closed.');
 		}

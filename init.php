@@ -85,6 +85,11 @@ require(classes_dir.'session.php');
 $session = new Session();
 $session->init();
 
+// initialize markdown
+require(include_dir.'Markdown.php');
+require(classes_dir.'markdown.php');
+$markdown = new Markdown();
+
 // configure gettext's locale
 putenv('LC_ALL='.$settings->locale);
 setlocale(LC_ALL, $settings->locale);

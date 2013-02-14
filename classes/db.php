@@ -1,6 +1,6 @@
 <?php
 /*
-	fearqdb - quote database system
+	escriure - blog cms
 	Copyright (C) 2012 David Martí <neikokz at gmail dot com>
 
 	This program is free software: you can redistribute it and/or modify
