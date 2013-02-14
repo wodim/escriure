@@ -31,7 +31,7 @@ function all_posts() {
 	$results = $db->get_results('SELECT id FROM posts');
 	
 	foreach ($results as $result) {
-		$return[] = $result->id;
+		$return[] = $result['id'];
 	}
 	
 	return $return;
@@ -39,20 +39,6 @@ function all_posts() {
 
 switch ($params[1]) {
 	/* example modules. */
-	case 'fill':
-		/* fills the data base with some test posts */
-		die;
-		for ($i = 0; $i < 100; $i++) {
-			$db->query(sprintf("INSERT INTO posts (permaid, nick, date, title, text, tags, db, status)
-				VALUES ('%s', '%s', '%s', '%s', '%s', '%s', 'escriure', 'published')",
-				sprintf('post-numero-%d', rand(0, 10000)),
-				'wodim',
-				sprintf('%s-%s-%s %s:%s:%s', rand(2007, 2012), rand(1, 12), rand(1, 28), rand(0, 23), rand(0, 59), rand(0, 59)),
-				'Title',
-				'Text',
-				'tags, of, the, post'));
-		}
-	break;
 	case 'template':
 		/* shows a template; you can copy it to your hard disk and write the post there,
 			then dump it to phpmyadmin to publish it */
@@ -72,13 +58,15 @@ switch ($params[1]) {
 		header('Content-type: text/plain');
 		foreach (all_posts() as $post_id) {
 			printf("--- Counting comments for %d...\n", $post_id);
-			$comment_count = $db->get_var(
-				sprintf('SELECT COUNT(0) FROM comments WHERE post_id = %d AND status = \'shown\'', $post_id));
+			$comment_count = $db->get_var('SELECT COUNT(0) FROM comments WHERE post_id = :id AND status = \'shown\'', array(
+				array(':id', $post_id, PDO::PARAM_INT)
+			));
 			printf("+++ %d comments found for %d\n", $comment_count, $post_id);
 			printf("--- Updating comment_count for %d...\n", $post_id);
-			$db->query(
-				sprintf('UPDATE posts SET comment_count = %d WHERE id = %d',
-					$comment_count, $post_id));
+			$db->query('UPDATE posts SET comment_count = :comment_count WHERE id = :id', array(
+				array(':comment_count', $comment_count, PDO::PARAM_INT),
+				array(':id', $post_id, PDO::PARAM_INT)
+			));
 			printf("+++ Updated comment_count for %d\n", $post_id);
 		}
 }

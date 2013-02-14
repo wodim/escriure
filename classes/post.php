@@ -19,9 +19,9 @@
 
 class Post {
 	const READ = 'id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, tags, db, status, comment_count, comment_status';
-	const READ_BY_PERMAID = 'SELECT id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, tags, status, comment_count, comment_status FROM posts WHERE permaid = \'%s\' AND db = \'%s\'';
-	const PREV_POST = 'SELECT permaid, title FROM posts WHERE id < %d AND db = \'%s\' AND status = \'published\' ORDER BY id DESC LIMIT 1';
-	const NEXT_POST = 'SELECT permaid, title FROM posts WHERE id > %d AND db = \'%s\' AND status = \'published\' ORDER BY id ASC LIMIT 1';
+	const READ_BY_PERMAID = 'SELECT id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, tags, status, comment_count, comment_status FROM posts WHERE permaid = :permaid AND db = :db';
+	const PREV_POST = 'SELECT permaid, title FROM posts WHERE id < :id AND db = :db AND status = \'published\' ORDER BY id DESC LIMIT 1';
+	const NEXT_POST = 'SELECT permaid, title FROM posts WHERE id > :id AND db = :db AND status = \'published\' ORDER BY id ASC LIMIT 1';
 
 	var $read = false;
 	var $id = 0;
@@ -54,8 +54,10 @@ class Post {
 			if (!$this->id && !$this->permaid) {
 				return false;
 			}
-			$query = sprintf(Post::READ_BY_PERMAID, clean($this->permaid, 64, true), $settings->db);
-			$results = $db->get_row($query);
+			$results = $db->get_row(Post::READ_BY_PERMAID, array(
+				array('permaid', $this->permaid, PDO::PARAM_STR),
+				array('db', $settings->db, PDO::PARAM_STR)
+			));
 		}
 
 		/* still no results? return */
@@ -63,7 +65,7 @@ class Post {
 			return false;
 		}
 
-		foreach (get_object_vars($results) as $variable => $value) {
+		foreach ($results as $variable => $value) {
 			$this->$variable = $value;
 		}
 
@@ -77,18 +79,24 @@ class Post {
 			$html->theme_req->nav_buttons->available = true;
 			$html->theme_req->nav_buttons->prev = $html->theme_req->nav_buttons->next = null;
 
-			$prev = $db->get_row(sprintf(Post::PREV_POST, $this->id, $this->db));
+			$prev = $db->get_row(Post::PREV_POST, array(
+				array(':id', $this->id, PDO::PARAM_INT),
+				array(':db', $this->db, PDO::PARAM_STR)
+			));
 			if ($prev) {
 				$html->theme_req->nav_buttons->prev = new stdClass();
-				$html->theme_req->nav_buttons->prev->permaid = $prev->permaid;
-				$html->theme_req->nav_buttons->prev->title = $prev->title;
+				$html->theme_req->nav_buttons->prev->permaid = $prev['permaid'];
+				$html->theme_req->nav_buttons->prev->title = $prev['title'];
 			}
 
-			$next = $db->get_row(sprintf(Post::NEXT_POST, $this->id, $this->db));
+			$next = $db->get_row(Post::NEXT_POST, array(
+				array(':id', $this->id, PDO::PARAM_INT),
+				array(':db', $this->db, PDO::PARAM_STR)
+			));
 			if ($next) {
 				$html->theme_req->nav_buttons->next = new stdClass();
-				$html->theme_req->nav_buttons->next->permaid = $next->permaid;
-				$html->theme_req->nav_buttons->next->title = $next->title;
+				$html->theme_req->nav_buttons->next->permaid = $next['permaid'];
+				$html->theme_req->nav_buttons->next->title = $next['permaid'];
 			}
 		}
 		$this->text = str_replace("\n", '', $this->text);

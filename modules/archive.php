@@ -19,13 +19,11 @@
 
 require(classes_dir.'post.php');
 
-global $params, $settings;
-
 $html->do_header(_('Post archive'));
 
-$posts = $db->get_results(
-	sprintf('SELECT UNIX_TIMESTAMP(date) AS ts, title, permaid FROM posts WHERE db = \'%s\' AND status = \'published\' ORDER BY date DESC',
-		$settings->db));
+$posts = $db->get_results('SELECT UNIX_TIMESTAMP(date) AS ts, title, permaid FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC', array(
+	array(':db', $settings->db, PDO::PARAM_STR)
+));
 
 if (!$posts) {
 	$html->do_sysmsg(_('Page not found'), null, 404);

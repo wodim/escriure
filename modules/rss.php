@@ -22,8 +22,9 @@ require(classes_dir.'post.php');
 global $params, $settings;
 
 $posts = $db->get_results(
-	sprintf('SELECT %s FROM posts WHERE status = \'published\' AND db = \'%s\' ORDER BY date DESC LIMIT %d',
-		post::READ, $settings->db, 10));
+	sprintf('SELECT %s FROM posts WHERE status = \'published\' AND db = :db ORDER BY id DESC LIMIT %d', Post::READ, $settings->page_size), array(
+	array(':db', $settings->db, PDO::PARAM_STR)
+));
 
 if (!$posts) {
 	header('HTTP/1.1 404');

@@ -28,42 +28,6 @@ function redir($location = null) {
 	header('Location: '.$location);
 	die;
 }
-// you could call this function with no arguments to get a mm.
-function get_avatar_url($mail = '', $size = 32) {
-	return(sprintf('http://www.gravatar.com/avatar/%s/?d=mm&s=%d', md5(trim(strtolower($mail))), $size));
-}
-
-/* START LEGACY, ie not being used anymroe */
-
-function is_valid_nick($nick) {
-	return(preg_match('/^[a-zA-Z0-9]{3,12}$/', $nick));
-}
-
-function is_valid_email($email) {
-	return(preg_match('/^[a-z0-9\.\-_]+(\+[a-z0-9\.\-_]+)*@[a-z0-9\-\.]+\.[a-z]{2,4}$/i', strtolower($email)));
-}
-
-function system_message($code, $message) {
-	header('HTTP/1.0 '.$code);
-	die('<h3>'.$code.' - '.$message.'</h3>');
-}
-/* END LEGACY */
-
-function escape($string) {
-	// well it's shorter.
-
-	return mysql_real_escape_string($string);
-}
-
-function clean($string, $maxlen = 0, $escape = false) {
-	$string = $maxlen ? substr(trim($string), 0, $maxlen) : trim($string);
-
-	if ($escape) {
-		$string = escape($string);
-	}
-
-	return $string;
-}
 
 function is_bot() {
 	return(isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|slurp/i', $_SERVER['HTTP_USER_AGENT']));
@@ -85,4 +49,8 @@ function is_posting($required) {
 	}
 
 	return true;
+}
+
+function debug($message) {
+	printf('<span style="border: 1px solid white; background: red; font-weight: bold; font-size: 9pt; color: white; padding: 3px 5px; display: inline-block;">%s</span>%s', $message, "\n");
 }

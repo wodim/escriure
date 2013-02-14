@@ -26,9 +26,11 @@ switch ($params[0]) {
 	case 'sitemap.xml':
 		header('Content-Type: text/xml');
 		/* I'm not using LIMIT here, but you may need it. :D */
-		$results = $db->get_results(sprintf('SELECT permaid FROM posts WHERE db = \'%s\' AND status = \'published\' ORDER BY date DESC', $settings->db));
+		$results = $db->get_results('SELECT permaid FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC', array(
+			array(':db', $settings->db, PDO::PARAM_STR)
+		));
 		if (!$results) {
-			header('HTTP/1.0 503');
+			header('HTTP/1.0 404');
 			die;
 		}
 		/* i'm using plain echo here because at a first glance i thought

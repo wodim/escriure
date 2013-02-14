@@ -17,7 +17,25 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$config['db']['user'] = '';
-$config['db']['pass'] = '';
-$config['db']['name'] = '';
-$config['db']['host'] = '';
+/* ---------- DB ---------- */
+/* mysql or sqlite */
+$config['db']['type'] = null;
+
+/* show all queries */
+$config['db']['debug'] = false;
+
+/* use a persistent connection. could not work,
+	but it is preferable. */
+$config['db']['persistent'] = false;
+
+/* for sqlite */
+$config['db']['file'] = null;
+
+/* for mysql */
+$config['db']['user'] = null;
+$config['db']['pass'] = null;
+$config['db']['name'] = null;
+/* 'socket' takes precedence over 'host'
+	(it is obviously not possible to use both at once) */
+$config['db']['socket'] = null;
+$config['db']['host'] = null;

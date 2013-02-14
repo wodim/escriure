@@ -17,10 +17,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$where = sprintf('WHERE db = \'%s\' AND status = \'shown\' AND post_id = %d',
-	$settings->db, $post->id);
-$comments = $db->get_results(sprintf('SELECT %s FROM comments %s ORDER BY date ASC',
-	Comment::READ, $where, $settings->page_size));
+$comments = $db->get_results(
+	sprintf('SELECT %s FROM comments WHERE db = :db AND status = \'shown\' AND post_id = :post_id ORDER BY id ASC', Comment::READ), array(
+	array(':db', $settings->db, PDO::PARAM_STR),
+	array(':post_id', $post->id, PDO::PARAM_INT)
+));
 
 if ($comments) {
 	$comment = new Comment();

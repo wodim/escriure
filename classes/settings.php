@@ -23,7 +23,7 @@ class Settings {
 	url, statics_url, db, title,
 	page_size, robots, mail, theme, site_key, meta_json,
 	admin_mail
-	FROM sites WHERE domain = \'%s\'';
+	FROM sites WHERE domain = :domain';
 	/* we are entitled to add reasonable defaults here!! */
 	var $domain = '';
 	var $lang = '';
@@ -49,15 +49,15 @@ class Settings {
 	function init() {
 		global $db;
 
-		$results = $db->get_row(
-			sprintf(Settings::READ,
-				clean($_SERVER['HTTP_HOST'], 32, true)));
+		$results = $db->get_row(Settings::READ, array(
+			array(':domain', $_SERVER['HTTP_HOST'], PDO::PARAM_STR)
+		));
 
 		if (!$results) {
 			return $this->read;
 		}
 
-		foreach (get_object_vars($results) as $variable => $value) {
+		foreach ($results as $variable => $value) {
 			$this->$variable = $value;
 		}
 

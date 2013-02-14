@@ -27,10 +27,11 @@ if (isset($params[1]) && is_numeric($params[1])) {
 	$page_number = 1;
 }
 
-$where = sprintf('WHERE db = \'%s\' AND status = \'published\'', $settings->db);
-
-$posts = $db->get_results(sprintf('SELECT %s FROM posts %s ORDER BY id DESC LIMIT %d,%d',
-	Post::READ, $where, (--$page_number * $settings->page_size), $settings->page_size));
+$posts = $db->get_results(
+	sprintf('SELECT %s FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC LIMIT %d,%d',
+		Post::READ, (--$page_number * $settings->page_size), $settings->page_size), array(
+	array(':db', $settings->db, PDO::PARAM_STR)
+));
 
 if (!$posts) {
 	$html->do_sysmsg(_('Page not found'), null, 404);
@@ -39,7 +40,9 @@ if (!$posts) {
 ++$page_number;
 
 $html->do_header();
-$rows = $db->get_var(sprintf('SELECT COUNT(*) FROM posts %s', $where));
+$rows = $db->get_var('SELECT COUNT(1) FROM posts WHERE db = :db AND status = \'published\'', array(
+	array(':db', $settings->db, PDO::PARAM_STR)
+));
 
 $pager = $html->do_pages($page_number, ceil($rows / $settings->page_size), '/page/%d', 4);
 

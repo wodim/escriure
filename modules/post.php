@@ -43,7 +43,7 @@ $session->tags = $post->tags;
 $html->do_header($post->title);
 $post->output();
 
-if ($post->comment_status != 'hidden') {
+if ($post->comment_status != 'hidden' && $post->comment_count > 0) {
 	require(modules_dir.'comment-list.php');
 }
 

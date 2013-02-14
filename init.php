@@ -18,6 +18,9 @@
 */
 
 require('config.php');
+if (file_exists('local.php')) {
+	require('local.php');
+}
 
 $config['site']['include'] = 'include';
 $config['site']['modules'] = 'modules';
@@ -32,23 +35,35 @@ require(include_dir.'utils.php');
 require(include_dir.'ezsql/shared/ez_sql_core.php');
 require(include_dir.'ezsql/mysql/ez_sql_mysql.php');
 
-$db = new ezSQL_mysql();
-
-if (!@$db->quick_connect($config['db']['user'], $config['db']['pass'],
-	$config['db']['name'], $config['db']['host'])) {
-	// ?
+/* initialise db */
+require(classes_dir.'db.php');
+$db = new DB();
+$db->type = $config['db']['type'];
+$db->debug = $config['db']['debug'];
+$db->persistent = $config['db']['persistent'];
+$db->file = $config['db']['file'];
+$db->user = $config['db']['user'];
+$db->pass = $config['db']['pass'];
+$db->name = $config['db']['name'];
+$db->socket = $config['db']['socket'];
+$db->host = $config['db']['host'];
+if (!$db->init()) {
 	header('HTTP/1.1 500 Internal Server Error');
 	die('DBE');
 }
 
-$db->query('SET NAMES `utf8`');
-
 require(classes_dir.'settings.php');
 $settings = new Settings();
 if (!$settings->init()) {
-	header('HTTP/1.1 404 Not Found');
-	die('Invalid hostname');
+	header('HTTP/1.1 500 Internal Server Error');
+	die('VHE');
 }
+
+/* encoding */
+if ($db->type == 'mysql') {
+	$db->query(sprintf('SET NAMES utf8 COLLATE %s', $settings->collate));
+}
+mb_internal_encoding('utf8');
 
 // initialize Haanga
 require(include_dir.'Haanga.php');
@@ -78,8 +93,3 @@ putenv('LC_ALL='.$settings->locale);
 setlocale(LC_ALL, $settings->locale);
 bindtextdomain('messages', './locale');
 textdomain('messages');
-
-// force https ?
-if (isset($_SERVER['HTTPS'])) {
-	redir(sprintf('http://%s%s', $_SERVER['HTTP_HOST'], $_GET['q']));
-}

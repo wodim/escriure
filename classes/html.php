@@ -46,9 +46,12 @@ class HTML {
 		foreach ($features as $feature => $value) {
 			switch ($feature) {
 				case 'latest_posts':
-					$this->theme_req->latest_posts = $db->get_results(sprintf('SELECT permaid, title FROM posts
-						WHERE db = \'%s\' AND status = \'published\'
-						ORDER BY date DESC LIMIT %s', $settings->db, $settings->page_size * 2));
+					$this->theme_req->latest_posts =
+						$db->get_results(
+							sprintf('SELECT permaid, title FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC LIMIT %d',
+								$settings->page_size * 2), array(
+							array(':db', $settings->db, PDO::PARAM_STR)
+						));
 					break;
 				case 'custom_dates':
 					$this->theme_req->custom_dates = $value;

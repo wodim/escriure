@@ -58,11 +58,11 @@ class Comment {
 			return false;
 		}
 
-		foreach (get_object_vars($results) as $variable => $value) {
+		foreach ($results as $variable => $value) {
 			$this->$variable = $value;
 		}
 
-		$this->avatar = get_avatar_url($this->mail, 32);
+		/* $this->avatar = get_avatar_url($this->mail, 32); */
 		$this->url_safe = htmlentities($this->url);
 		if (!preg_match('/^https?:\/\//', $this->url_safe)) {
 			$this->url_safe = sprintf('http://%s', $this->url_safe);
@@ -96,21 +96,23 @@ class Comment {
 	}
 
 	function store() {
-		global $db, $settings;
+		global $db, $settings, $session;
 
-		$nick = clean($this->nick, 16, true);
-		$mail = clean($this->mail, 64, true);
-		$url = clean($this->url, 128, true);
-		$text = clean($this->text, 10000, true);
-		$post_id = (int)$this->post_id;
-		$parent = (int)$this->parent;
-
-		$db->query(sprintf(
-			'INSERT INTO comments (nick, mail, url, date, ip, text, post_id, parent, db, status)
-				VALUES (\'%s\', \'%s\', \'%s\', NOW(), \'%s\', \'%s\', \'%d\', \'%d\', \'%s\', \'%s\')',
-			$nick, $mail, $url, $this->ip, $text, $post_id, $parent, $settings->db, $this->status));
-		$db->query(sprintf('UPDATE posts SET comment_count = comment_count + 1 WHERE id = %d', 
-			$post_id));
+		$db->query('INSERT INTO comments (nick, mail, url, date, ip, text, post_id, parent, db, status)
+			VALUES (:nick, :mail, :url, NOW(), :ip, :text, :post_id, :parent, :db, :status)', array(
+			array(':nick', $this->nick, PDO::PARAM_STR),
+			array(':mail', $this->mail, PDO::PARAM_STR),
+			array(':url', $this->url, PDO::PARAM_STR),
+			array(':ip', $session->ip, PDO::PARAM_STR),
+			array(':text', $this->text, PDO::PARAM_STR),
+			array(':post_id', $this->post_id, PDO::PARAM_INT),
+			array(':parent', $this->parent, PDO::PARAM_INT),
+			array(':db', $settings->db, PDO::PARAM_STR),
+			array(':status', $this->status, PDO::PARAM_STR)
+		));
+		$db->query('UPDATE posts SET comment_count = comment_count + 1 WHERE id = :id', array(
+			array(':id', $this->post_id, PDO::PARAM_INT)
+		));
 
 		// send mail
 		if ($settings->admin_mail) {
