@@ -28,7 +28,6 @@ class Comment {
 	var $mail = '';
 	var $url = '';
 	var $timestamp = '';
-	var $ts = 0;
 	var $ip = '';
 	var $text = '';
 	var $post_id = 0;

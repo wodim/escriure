@@ -31,7 +31,7 @@ if (!$posts) {
 	die;
 }
 
-$rss['date'] = date('r', $posts[0]->ts);
+$rss['date'] = date('r', $posts[0]['timestamp']);
 
 $vars = compact('rss');
 
