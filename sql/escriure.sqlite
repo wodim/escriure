@@ -1,0 +1,68 @@
+-- fearqdb - quote database system
+-- Copyright (C) 2013 David Martí <neikokz at gmail dot com>
+
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Affero General Public License as
+-- published by the Free Software Foundation, either version 3 of the
+-- License, or (at your option) any later version.
+
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Affero General Public License for more details.
+
+-- You should have received a copy of the GNU Affero General Public License
+-- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` INTEGER,
+  `nick` TEXT,
+  `mail` TEXT,
+  `url` TEXT,
+  `timestamp` INTEGER,
+  `ip` TEXT,
+  `text` TEXT,
+  `post_id` INTEGER,
+  `parent` INTEGER,
+  `db` TEXT,
+  `status` TEXT,
+  PRIMARY KEY (`id`)
+)
+
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` INTEGER,
+  `permaid` TEXT,
+  `nick` TEXT,
+  `timestamp` INTEGER,
+  `title` TEXT,
+  `text` TEXT,
+  `tags` TEXT,
+  `db` TEXT,
+  `status` TEXT,
+  `comment_count` INTEGER,
+  `comment_status` TEXT,
+  PRIMARY KEY (`id`)
+)
+
+CREATE TABLE IF NOT EXISTS `sites` (
+  `id` INTEGER,
+  `domain` TEXT,
+  `lang` TEXT,
+  `locale` TEXT,
+  `collate` TEXT,
+  `analytics_enabled` INTEGER,
+  `analytics_code` TEXT,
+  `url` TEXT,
+  `statics_url` TEXT,
+  `theme` TEXT,
+  `db` TEXT,
+  `title` TEXT,
+  `page_size` INTEGER,
+  `robots` TEXT,
+  `mail` TEXT,
+  `site_key` TEXT,
+  `meta_json` TEXT,
+  `admin_mail` TEXT,
+  PRIMARY KEY (`id`)
+)
+
