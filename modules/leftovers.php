@@ -33,20 +33,12 @@ switch ($params[0]) {
 			header('HTTP/1.0 404');
 			die;
 		}
-		/* i'm using plain echo here because at a first glance i thought
-			it would be faster and cleaner. after doing it, it's obviously not cleaner. */
-		echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
-		echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
-		echo "\t".'<url>'."\n";
-		echo "\t\t".sprintf('<loc>%sarchive</loc>', $settings->url)."\n";
-		echo "\t\t<priority>1.0</priority>\n";
-		echo "\t".'</url>'."\n";
-		foreach ($results as $result) {
-			echo "\t".'<url>'."\n";
-			echo "\t\t".sprintf('<loc>%s%s</loc>', $settings->url, $result->permaid)."\n";
-			echo "\t".'</url>'."\n";
+		$archive = sprintf('%sarchive', $settings->url);
+		foreach ($results as $post) {
+			$posts[]['permalink'] = sprintf('%s%s', $settings->url, $post['permaid']);
 		}
-		echo '</urlset>';
+		$vars = compact('archive', 'posts');
+		Haanga::Load('sitemap.xml', $vars);
 		break;
 	case 'robots.txt':
 		header('Content-Type: text/plain');
