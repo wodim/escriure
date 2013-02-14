@@ -21,7 +21,7 @@ require(classes_dir.'post.php');
 
 $html->do_header(_('Post archive'));
 
-$posts = $db->get_results('SELECT UNIX_TIMESTAMP(date) AS ts, title, permaid FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC', array(
+$posts = $db->get_results('SELECT timestamp, title, permaid FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC', array(
 	array(':db', $settings->db, PDO::PARAM_STR)
 ));
 
@@ -34,15 +34,15 @@ $post = new post();
 echo '<section class="archive">';
 foreach ($posts as $this_post) {
 	$post->read($this_post);
-	if (!isset($timestamp['00'.date('Y', $post->ts)])) {
-		$timestamp['00'.date('Y', $post->ts)] = true;
-		printf('<h3>%s</h3>', date('Y', $post->ts));
+	if (!isset($timestamp['00'.date('Y', $post->timestamp)])) {
+		$timestamp['00'.date('Y', $post->timestamp)] = true;
+		printf('<h3>%s</h3>', date('Y', $post->timestamp));
 	}
-	if (!isset($timestamp[date('mY', $post->ts)])) {
-		$timestamp[date('mY', $post->ts)] = true;
-		printf('<h4>%s</h4>', strftime('%B', $post->ts));
+	if (!isset($timestamp[date('mY', $post->timestamp)])) {
+		$timestamp[date('mY', $post->timestamp)] = true;
+		printf('<h4>%s</h4>', strftime('%B', $post->timestamp));
 	}
-	printf('<p><a href="%s%s">%s</a> - <strong>%s</strong>', $settings->url, $post->permaid, $post->title, strftime(_('%B %e'), $post->ts));
+	printf('<p><a href="%s%s">%s</a> - <strong>%s</strong>', $settings->url, $post->permaid, $post->title, strftime(_('%B %e'), $post->timestamp));
 }
 echo '</section>';
 

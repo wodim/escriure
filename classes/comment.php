@@ -18,16 +18,16 @@
 */
 
 class Comment {
-	const READ = 'id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db, reply';
-	const READ_BY_ID = 'SELECT id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db, reply FROM comments WHERE id = \'%s\' AND db = \'%s\'';
-	const READ_BY_POST_ID = 'SELECT id, nick, mail, url, date, UNIX_TIMESTAMP(date) AS ts, ip, text, post_id, parent, db, reply FROM comments WHERE post_id = \'%s\' AND db = \'%s\'';
+	const READ = 'id, nick, mail, url, timestamp,  ip, text, post_id, parent, db, reply';
+	const READ_BY_ID = 'SELECT id, nick, mail, url, timestamp, ip, text, post_id, parent, db, reply FROM comments WHERE id = \'%s\' AND db = \'%s\'';
+	const READ_BY_POST_ID = 'SELECT id, nick, mail, url, timestamp, ip, text, post_id, parent, db, reply FROM comments WHERE post_id = \'%s\' AND db = \'%s\'';
 
 	var $read = false;
 	var $id = 0;
 	var $nick = '';
 	var $mail = '';
 	var $url = '';
-	var $date = '';
+	var $timestamp = '';
 	var $ts = 0;
 	var $ip = '';
 	var $text = '';
@@ -67,7 +67,7 @@ class Comment {
 		if (!preg_match('/^https?:\/\//', $this->url_safe)) {
 			$this->url_safe = sprintf('http://%s', $this->url_safe);
 		}
-		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->ts);
+		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->timestamp);
 		$this->read = true;
 		return true;
 	}
@@ -98,11 +98,12 @@ class Comment {
 	function store() {
 		global $db, $settings, $session;
 
-		$db->query('INSERT INTO comments (nick, mail, url, date, ip, text, post_id, parent, db, status)
-			VALUES (:nick, :mail, :url, NOW(), :ip, :text, :post_id, :parent, :db, :status)', array(
+		$db->query('INSERT INTO comments (nick, mail, url, timestamp, ip, text, post_id, parent, db, status)
+			VALUES (:nick, :mail, :url, :timestamp, :ip, :text, :post_id, :parent, :db, :status)', array(
 			array(':nick', $this->nick, PDO::PARAM_STR),
 			array(':mail', $this->mail, PDO::PARAM_STR),
 			array(':url', $this->url, PDO::PARAM_STR),
+			array(':timestamp', time(), PDO::PARAM_INT),
 			array(':ip', $session->ip, PDO::PARAM_STR),
 			array(':text', $this->text, PDO::PARAM_STR),
 			array(':post_id', $this->post_id, PDO::PARAM_INT),

@@ -18,8 +18,8 @@
 */
 
 class Post {
-	const READ = 'id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, tags, db, status, comment_count, comment_status';
-	const READ_BY_PERMAID = 'SELECT id, permaid, nick, date, UNIX_TIMESTAMP(date) AS ts, title, text, db, tags, status, comment_count, comment_status FROM posts WHERE permaid = :permaid AND db = :db';
+	const READ = 'id, permaid, nick, timestamp, title, text, tags, db, status, comment_count, comment_status';
+	const READ_BY_PERMAID = 'SELECT id, permaid, nick, timestamp, title, text, db, tags, status, comment_count, comment_status FROM posts WHERE permaid = :permaid AND db = :db';
 	const PREV_POST = 'SELECT permaid, title FROM posts WHERE id < :id AND db = :db AND status = \'published\' ORDER BY id DESC LIMIT 1';
 	const NEXT_POST = 'SELECT permaid, title FROM posts WHERE id > :id AND db = :db AND status = \'published\' ORDER BY id ASC LIMIT 1';
 
@@ -27,7 +27,7 @@ class Post {
 	var $id = 0;
 	var $permaid = '';
 	var $nick = '';
-	var $date = '';
+	var $timestamp = '';
 	var $title = '';
 	var $text = '';
 	var $tags = '';
@@ -70,7 +70,7 @@ class Post {
 		}
 
 		$this->permalink = sprintf('%s%s', $settings->url, $this->permaid);
-		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->ts);
+		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->timestamp);
 		if ($html->theme_req->custom_dates) {
 			$this->cdate = new stdClass();
 			$this->populate_cdate();
@@ -96,7 +96,7 @@ class Post {
 			if ($next) {
 				$html->theme_req->nav_buttons->next = new stdClass();
 				$html->theme_req->nav_buttons->next->permaid = $next['permaid'];
-				$html->theme_req->nav_buttons->next->title = $next['permaid'];
+				$html->theme_req->nav_buttons->next->title = $next['title'];
 			}
 		}
 		$this->text = str_replace("\n", '', $this->text);
@@ -128,7 +128,7 @@ class Post {
 
 		$post = $this;
 
-		$post->ts = date(DATE_RSS, $post->ts);
+		$post->timestamp = date(DATE_RSS, $post->timestamp);
 
 		$vars = compact('post');
 		Haanga::Load('rss-post.html', $vars);
@@ -149,7 +149,7 @@ class Post {
 
 		$formats = str_split($html->theme_req->custom_dates);
 		foreach ($formats as $format) {
-			$this->cdate->$format = strftime(sprintf('%%%s', $format), $this->ts);
+			$this->cdate->$format = strftime(sprintf('%%%s', $format), $this->timestamp);
 		}
 	}
 }

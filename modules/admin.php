@@ -48,7 +48,7 @@ switch ($params[1]) {
 		$post->text = "\n\n\n<!-- POST CONTENT -->\n\n\n";
 		$post->output();
 		$html->do_footer();
-	break;
+		break;
 	case 'recount':
 		/* recounts all comments. this should be used whenever you delete or insert a comment
 			by hand */
@@ -69,4 +69,26 @@ switch ($params[1]) {
 			));
 			printf("+++ Updated comment_count for %d\n", $post_id);
 		}
+		break;
+	case 'timestamp':
+		/* convert datetime to unix timestamps */
+		die;
+		$posts = $db->get_results('SELECT id, UNIX_TIMESTAMP(date) AS ts FROM posts ORDER BY id');
+		foreach ($posts as $post) {
+			$db->query('UPDATE posts SET timestamp = :timestamp WHERE id = :id', array(
+				array(':timestamp', $post['ts'], PDO::PARAM_STR),
+				array(':id', $post['id'], PDO::PARAM_STR)
+			));
+			printf("Updated post %s\n", $post['id']);
+		}
+		$comments = $db->get_results('SELECT id, UNIX_TIMESTAMP(date) AS ts FROM comments ORDER BY id');
+		foreach ($comments as $comment) {
+			$db->query('UPDATE comments SET timestamp = :timestamp WHERE id = :id', array(
+				array(':timestamp', $comment['ts'], PDO::PARAM_STR),
+				array(':id', $comment['id'], PDO::PARAM_STR)
+			));
+			printf("Updated comment %s\n", $comment['id']);
+		}
+		printf("End after %d queries\n", $db->num_queries);
+		break;
 }

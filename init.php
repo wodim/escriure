@@ -32,9 +32,6 @@ define('classes_dir', $config['site']['classes'].'/');
 
 require(include_dir.'utils.php');
 
-require(include_dir.'ezsql/shared/ez_sql_core.php');
-require(include_dir.'ezsql/mysql/ez_sql_mysql.php');
-
 /* initialise db */
 require(classes_dir.'db.php');
 $db = new DB();
