@@ -29,7 +29,7 @@ if (!$posts) {
 	$html->do_sysmsg(_('Page not found'), null, 404);
 }
 
-$session->canonical = sprintf('%s/archive', $settings->url);
+$session->canonical = sprintf('%sarchive', $settings->url);
 
 $timestamp = array();
 $post = new post();
