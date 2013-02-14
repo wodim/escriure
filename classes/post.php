@@ -111,7 +111,9 @@ class Post {
 			));
 		}
 
+		$this->title = html_entity_decode($this->title, ENT_QUOTES, 'utf-8');
 		$this->text_html = str_replace("\n", '', $this->text_html);
+		$this->text_html = html_entity_decode($this->text_html, ENT_QUOTES, 'utf-8');
 		if ($this->comment_status == 'closed') {
 			$this->warning = _('Comments for this post are closed.');
 		}
@@ -139,8 +141,9 @@ class Post {
 		}
 
 		$post = $this;
-
-		$post->timestamp = date(DATE_RSS, $post->timestamp);
+		$post->timestamp_rss = date(DATE_RSS, $post->timestamp);
+		$post->title = htmlspecialchars($post->title);
+		$post->text_rss = htmlspecialchars($post->text_html);
 
 		$vars = compact('post');
 		Haanga::Load('rss-post.html', $vars);
