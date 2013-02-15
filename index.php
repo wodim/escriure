@@ -50,6 +50,9 @@ switch ($params[0]) {
 		$module = 'list';
 		require(modules_dir.'list.php');
 		break;
+	case '_':
+		require(modules_dir.'statics.php');
+		break;
 	default:
 		$module = 'post';
 		require(modules_dir.'post.php');

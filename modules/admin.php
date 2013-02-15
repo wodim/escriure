@@ -37,6 +37,10 @@ function all_posts() {
 	return $return;
 }
 
+//header('HTTP/1.1 403 Forbidden');
+header('Content-Type: text/plain; charset=utf8');
+//die('Access denied');
+
 switch ($params[1]) {
 	/* example modules. */
 	case 'template':
@@ -54,7 +58,6 @@ switch ($params[1]) {
 			by hand */
 		/* we will probably never have a save() method for Post, but, in case we have
 			one, fix this */
-		die;
 		header('Content-type: text/plain');
 		foreach (all_posts() as $post_id) {
 			printf("--- Counting comments for %d...\n", $post_id);
@@ -72,7 +75,6 @@ switch ($params[1]) {
 		break;
 	case 'timestamp':
 		/* convert datetime to unix timestamps */
-		die;
 		$posts = $db->get_results('SELECT id, UNIX_TIMESTAMP(date) AS ts FROM posts ORDER BY id');
 		foreach ($posts as $post) {
 			$db->query('UPDATE posts SET timestamp = :timestamp WHERE id = :id', array(
@@ -90,5 +92,31 @@ switch ($params[1]) {
 			printf("Updated comment %s\n", $comment['id']);
 		}
 		printf("End after %d queries\n", $db->num_queries);
+		break;
+	case 'sqlite':
+		/* dump everything and get it ready for a sqlite export */
+		$tables = $db->get_results('SHOW TABLES');
+		foreach ($tables as $table) {
+			$table = reset($table);
+			printf("-- Dumping data for table `%s`\n", $table);
+			$columns = $db->get_results(sprintf('DESCRIBE %s', $table));
+			$structure = array();
+			foreach ($columns as $column) {
+				$structure[] = sprintf('`%s`', $column['Field']);
+			}
+			$structure = implode(', ', $structure);
+			$rows = $db->get_results(sprintf('SELECT * FROM %s', $table));
+			if (count($rows) > 0) {
+				foreach ($rows as $row) {
+					$values = array();
+					foreach ($row as $value) {
+						$values[] = ctype_digit($value) ? (int)$value : sprintf('\'%s\'', str_replace('\'', '\'\'', $value));
+					}
+					$values = implode(', ', $values);
+					printf("INSERT INTO %s (%s) VALUES (%s);\n", $table, $structure, $values);
+				}
+			}
+			printf("\n");
+		}
 		break;
 }

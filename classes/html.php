@@ -73,7 +73,12 @@ class HTML {
 		if ($this->theme_req->html4_compat == false) {
 			$this->check_browser();
 		}
-		$vars = compact('title');
+		$timestamp['core'] = md5(sprintf('%s%s', filemtime(sprintf('statics/%s/core.css', $settings->theme)), $settings->site_key));
+		$timestamp['escriure'] = md5(sprintf('%s%s', filemtime(sprintf('statics/%s/escriure.png', $settings->theme)), $settings->site_key));
+		if ($settings->analytics_enabled) {
+			$timestamp['ga'] = md5(sprintf('%s%s', filemtime('statics/ga.js'), $settings->site_key));
+		}
+		$vars = compact('title', 'timestamp');
 		Haanga::Load(sprintf('%s/header.html', $settings->theme), $vars);
 	}
 
