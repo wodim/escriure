@@ -26,8 +26,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `parent` INTEGER,
   `db` TEXT,
   `status` TEXT,
+  `reply` TEXT,
   PRIMARY KEY (`id`)
-)
+);
 
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` INTEGER,
@@ -44,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `comment_count` INTEGER,
   `comment_status` TEXT,
   PRIMARY KEY (`id`)
-)
+);
 
 CREATE TABLE IF NOT EXISTS `sites` (
   `id` INTEGER,
@@ -66,5 +67,4 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `meta_json` TEXT,
   `admin_mail` TEXT,
   PRIMARY KEY (`id`)
-)
-
+);

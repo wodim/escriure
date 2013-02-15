@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `parent` int(11) NOT NULL DEFAULT '0',
   `db` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT 'Shouldn''t be needed (the db could be guessed from the post_id).',
   `status` enum('hidden','shown') CHARACTER SET utf8 NOT NULL,
+  `reply` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
