@@ -111,9 +111,25 @@ class Post {
 			));
 		}
 
+		/* lol crap */
+		$no_unescape = array('lt', 'gt', 'amp');
+
+		foreach ($no_unescape as $entity) {
+			$this->title = str_replace(sprintf('&%s;', $entity), sprintf('{{UH-UH-%s-CANT-TOUCH-THIS}}', $entity), $this->title);
+		}
 		$this->title = html_entity_decode($this->title, ENT_QUOTES, 'utf-8');
-		$this->text_html = str_replace("\n", '', $this->text_html);
+		foreach ($no_unescape as $entity) {
+			$this->title = str_replace(sprintf('{{UH-UH-%s-CANT-TOUCH-THIS}}', $entity), sprintf('&%s;', $entity), $this->title);
+		}
+
+		foreach ($no_unescape as $entity) {
+			$this->text_html = str_replace(sprintf('&%s;', $entity), sprintf('{{UH-UH-%s-CANT-TOUCH-THIS}}', $entity), $this->text_html);
+		}
 		$this->text_html = html_entity_decode($this->text_html, ENT_QUOTES, 'utf-8');
+		foreach ($no_unescape as $entity) {
+			$this->text_html = str_replace(sprintf('{{UH-UH-%s-CANT-TOUCH-THIS}}', $entity), sprintf('&%s;', $entity), $this->text_html);
+		}
+
 		if ($this->comment_status == 'closed') {
 			$this->warning = _('Comments for this post are closed.');
 		}
