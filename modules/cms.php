@@ -62,7 +62,7 @@ switch ($type) {
 					array(':size', $_FILES['content']['size'], PDO::PARAM_INT),
 					array(':content', file_get_contents($_FILES['content']['tmp_name']), PDO::PARAM_LOB)
 				));
-				add_result('File saved.');
+				add_result(sprintf('File saved: <a href="%sblob/%s" target="_blank"><code>%s</code></a>', $settings->url, $md5));
 			}
 		}
 		break;
