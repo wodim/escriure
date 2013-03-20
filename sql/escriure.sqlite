@@ -68,3 +68,14 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `admin_mail` TEXT,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE IF NOT EXISTS `blobs` (
+  `id` INTEGER,
+  `db` TEXT,
+  `name` TEXT,
+  `mimetype` TEXT,
+  `timestamp` INT,
+  `size` INT,
+  `content` BLOB,
+  PRIMARY KEY (`id`)
+);

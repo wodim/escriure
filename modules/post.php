@@ -39,11 +39,12 @@ $session->canonical = $post->permalink;
 $html->do_header($post->title);
 $post->output();
 
-if ($post->comment_status != 'hidden' && $post->comment_count > 0) {
+if ($post->comment_status != 'hidden' && $post->comment_count > 0
+		&& $html->theme_req->comments == true) {
 	require(modules_dir.'comment-list.php');
 }
 
-if ($post->comment_status == 'open') {
+if ($post->comment_status == 'open' && $html->theme_req->comments == true) {
 	$form['action'] = sprintf('/%s#comment-form', $post->permaid);
 	require(modules_dir.'comment-form.php');
 }

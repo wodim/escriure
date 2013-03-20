@@ -46,12 +46,16 @@ class HTML {
 		foreach ($features as $feature => $value) {
 			switch ($feature) {
 				case 'latest_posts':
-					$this->theme_req->latest_posts =
-						$db->get_results(
-							sprintf('SELECT permaid, title FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC LIMIT %d',
-								$settings->page_size * 2), array(
-							array(':db', $settings->db, PDO::PARAM_STR)
-						));
+					if ($value == true) {
+						$this->theme_req->latest_posts =
+							$db->get_results(
+								sprintf('SELECT permaid, title FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC LIMIT %d',
+									$settings->page_size * 2), array(
+								array(':db', $settings->db, PDO::PARAM_STR)
+							));
+					} else {
+						$this->theme_req->latest_posts = null;
+					}
 					break;
 				case 'custom_dates':
 					$this->theme_req->custom_dates = $value;
@@ -61,6 +65,9 @@ class HTML {
 					break;
 				case 'html4_compat':
 					$this->theme_req->html4_compat = $value;
+					break;
+				case 'comments':
+					$this->theme_req->comments = $value;
 					break;
 			}
 		}

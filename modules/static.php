@@ -29,7 +29,11 @@ function headers($contenttype) {
 	header('Cache-Control: public, max-age=31536000');
 	header('Expires: Thu, 01 Jan 2099 00:00:00 GMT');
 	header('Last-Modified: Sun, 01 Jan 2012 00:00:00 GMT');
-	header(sprintf('Content-Type: %s; charset=utf-8', $contenttype));
+	if ($contenttype == 'text/css' || $contenttype == 'application/javascript') {
+		header(sprintf('Content-Type: %s; charset=utf-8', $contenttype));
+	} else {
+		header(sprintf('Content-Type: %s', $contenttype));
+	}
 }
 
 if (count($params) < 3) {
@@ -92,4 +96,4 @@ if ($params[1] == 'js') {
 	}
 }
 
-die(); /* otherwise, the queries counter would be shown. */
+die; /* otherwise, the queries counter would be shown. */

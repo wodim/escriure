@@ -1,0 +1,20 @@
+<div class="article">
+	<div class="meta">
+		<a class="date" href="{{post.permalink}}" title="Publicado el {{post.hdate|escape}} por {{post.nick|escape}}">
+			{{post.cdate.e}} {{post.cdate.b}} {{post.cdate.G}}
+		</a>
+	</div>
+	<div class="content">
+		<a class="title" href="{{post.permalink}}">{{post.title|escape}}</a>
+		<div class="arrow"></div>
+		<div class="text">
+			{{post.text_html}}
+		</div>
+	</div>
+	<div class="clearit"></div>
+</div>
+{% if post.warning && !post.listing && post.comment_status == 'closed' %}
+<div class="warning">
+	{{post.warning}}
+</div>
+{% endif %}

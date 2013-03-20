@@ -69,3 +69,13 @@ CREATE TABLE IF NOT EXISTS `sites` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
+CREATE TABLE IF NOT EXISTS `blobs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `db` varchar(32) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `mimetype` varchar(32) NOT NULL,
+  `timestamp` int(11) NOT NULL,
+  `size` int(11) NOT NULL,
+  `content` blob NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;

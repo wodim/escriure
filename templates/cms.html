@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Escriure CMS</title>
+	</head>
+	<body>
+		{% if info %}
+			{{info}}
+			<hr />
+		{% endif %}
+		<h4>Insert new post</h4>
+		<hr />
+
+		<h4>Fetch and modify post</h4>
+		<hr />
+
+		<h4>Insert new blob</h4>
+		<form method="post" enctype="multipart/form-data">
+			<div>
+				<input type="text" name="mimetype" id="mimetype" />
+				<label for="mimetype">Mimetype (leave blank for autodetect)</label>
+			</div>
+			<div>
+				<input type="file" name="content" id="content" />
+			</div>
+			<div>
+				<input type="submit" />
+			</div>
+			<input type="hidden" name="type" value="blob_insert" />
+		</form>
+		<hr />
+
+		<h4>Remove blob</h4>
+		<hr />
+
+		<h4>List of blobs</h4>
+		<form method="post" enctype="multipart/form-data">
+			<div>
+				<input type="submit" />
+			</div>
+			<input type="hidden" name="type" value="blob_list" />
+		</form>
+		<hr />
+	</body>
+</html>

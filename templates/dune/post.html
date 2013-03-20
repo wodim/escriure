@@ -10,17 +10,19 @@
 		</div>
 	</div>
 	<div class="meta">
-{# weird but needed, there's no support for elseif in haanga #}
-{% if post.comment_count > 1 %}
-		<a class="comments rbutton" href="{{post.permalink}}#comments">{{post.comment_count}} comentarios</a>
-{% else %}
-	{% if post.comment_count == 1 %}
-		<a class="comments rbutton" href="{{post.permalink}}#comments">Un comentario</a>
+{% if post.comment_status != 'hidden' %}
+	{# weird but needed, there's no support for elseif in haanga #}
+	{% if post.comment_count > 1 %}
+			<a class="comments rbutton" href="{{post.permalink}}#comments">{{post.comment_count}} comentarios</a>
 	{% else %}
-		{% if post.comment_status == 'open' %}
-		<a class="comments rbutton" href="{{post.permalink}}#comment-form">Deja un comentario</a>
+		{% if post.comment_count == 1 %}
+			<a class="comments rbutton" href="{{post.permalink}}#comments">Un comentario</a>
 		{% else %}
-		<a class="comments rbutton">Comentarios cerrados</a>
+			{% if post.comment_status == 'open' %}
+			<a class="comments rbutton" href="{{post.permalink}}#comment-form">Deja un comentario</a>
+			{% else %}
+			<a class="comments rbutton">Comentarios cerrados</a>
+			{% endif %}
 		{% endif %}
 	{% endif %}
 {% endif %}
