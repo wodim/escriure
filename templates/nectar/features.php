@@ -20,7 +20,7 @@
 $features = array(
 		'latest_posts' => false,
 		'custom_dates' => 'ebG',
-		'nav_buttons' => true,
+		'nav_buttons' => false,
 		'html4_compat' => true,
 		'comments' => false
 	);
