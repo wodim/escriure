@@ -24,7 +24,7 @@ header('X-Robots-Tag: noindex');
 
 switch ($params[0]) {
 	case 'sitemap.xml':
-		header('Content-Type: text/xml');
+		header('Content-Type: text/xml; charset=utf-8');
 		/* I'm not using LIMIT here, but you may need it. :D */
 		$results = $db->get_results('SELECT permaid FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC', array(
 			array(':db', $settings->db, PDO::PARAM_STR)
@@ -41,7 +41,7 @@ switch ($params[0]) {
 		Haanga::Load('sitemap.xml', $vars);
 		break;
 	case 'robots.txt':
-		header('Content-Type: text/plain');
+		header('Content-Type: text/plain; charset=utf-8');
 		echo "User-agent: *\n";
 		switch ($settings->robots) {
 			case 'disallow':
