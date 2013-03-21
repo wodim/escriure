@@ -19,10 +19,13 @@
 
 require(classes_dir.'post.php');
 
-global $params, $settings;
+$twitter = '';
+if (isset($params[1]) && $params[1] == 'twitter') {
+	$twitter = 'AND twitter = 1';
+}
 
 $posts = $db->get_results(
-	sprintf('SELECT %s FROM posts WHERE status = \'published\' AND db = :db ORDER BY id DESC LIMIT %d', Post::READ, $settings->page_size), array(
+	sprintf('SELECT %s FROM posts WHERE status = \'published\' AND db = :db %s ORDER BY id DESC LIMIT %d', Post::READ, $twitter, $settings->page_size), array(
 	array(':db', $settings->db, PDO::PARAM_STR)
 ));
 

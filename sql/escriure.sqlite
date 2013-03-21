@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `status` TEXT,
   `comment_count` INTEGER,
   `comment_status` TEXT,
+  `twitter` INTEGER,
   PRIMARY KEY (`id`)
 );
 

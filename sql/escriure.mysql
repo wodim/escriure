@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `status` enum('draft','published') NOT NULL,
   `comment_count` int(11) NOT NULL DEFAULT '0',
   `comment_status` enum('open','closed','hidden') NOT NULL DEFAULT 'closed',
+  `twitter` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
