@@ -17,7 +17,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$html->do_sysmsg(_('Forbidden'), null, 403);
+#$html->do_sysmsg(_('Forbidden'), null, 403);
 
 $type = isset($_POST['type']) ? $_POST['type'] : null;
 $results = array();
@@ -49,7 +49,7 @@ switch ($type) {
 				array(':name', $md5, PDO::PARAM_STR)
 			));
 			if ($count > 0) {
-				add_result(sprintf('Error: duplicated file. Old name: %s', $md5));
+				add_result(sprintf('Error: duplicated file. Old name: <a href="%sblob/%s" target="_blank"><code>%s</code></a>', $settings->url, $md5, $md5));
 			} else {
 				$db->query('INSERT INTO blobs (db, name, mimetype, `timestamp`, size, content)
 					VALUES (:db, :name, :mimetype, :timestamp, :size, :content)', array(
@@ -62,7 +62,7 @@ switch ($type) {
 					array(':size', $_FILES['content']['size'], PDO::PARAM_INT),
 					array(':content', file_get_contents($_FILES['content']['tmp_name']), PDO::PARAM_LOB)
 				));
-				add_result(sprintf('File saved: <a href="%sblob/%s" target="_blank"><code>%s</code></a>', $settings->url, $md5));
+				add_result(sprintf('File saved: <a href="%sblob/%s" target="_blank"><code>%s</code></a>', $settings->url, $md5, $md5));
 			}
 		}
 		break;
