@@ -17,7 +17,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#$html->do_sysmsg(_('Forbidden'), null, 403);
+$html->do_sysmsg(_('Forbidden'), null, 403);
 
 $type = isset($_POST['type']) ? $_POST['type'] : null;
 $results = array();
