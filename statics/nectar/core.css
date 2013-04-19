@@ -328,3 +328,29 @@ div.footer {
 	font-weight: bold;
 	margin-top: 10px;
 }
+
+table {
+	margin: 18px auto;
+}
+
+thead td,
+thead th {
+	text-align: center;
+}
+
+tr {
+	border: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+}
+
+td, th {
+	padding: 4px 8px;
+	min-width: 40px;
+}
+
+th,
+thead td,
+thead th {
+	font-weight: bold;
+	background: #fafafa;
+}

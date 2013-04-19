@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8" />
 {% if title %}
-		<title>{{title}} — {{settings.title}}</title>
+		<title>{{title|escape}} — {{settings.title|escape}}</title>
 {% else %}
-		<title>{{settings.title}}</title>
+		<title>{{settings.title|escape}}</title>
 {% endif %}
 {% if session.sysmsg %}
 		<meta name="robots" content="noindex,nofollow" />
@@ -21,7 +21,7 @@
 {% endif %}
 		<link rel="stylesheet" type="text/css" media="all" href="{{settings.statics_url}}_/css/core/{{timestamp.core}}" />
 		<link rel="shortcut icon" href="{{settings.statics_url}}_/png/escriure/{{timestamp.escriure}}" type="image/x-png" />
-		<link rel="alternate" type="application/rss+xml" title="{{settings.title}}" href="{{settings.url}}rss" />
+		<link rel="alternate" type="application/rss+xml" title="{{settings.title|escape}}" href="{{settings.url}}rss" />
 {% if settings.analytics_enabled %}
 		<script>
 			var _gaq = _gaq || [];
@@ -38,7 +38,7 @@
 	</head>
 	<body>
 		<div class="header">
-			<a href="/">{{settings.title}}</a>
+			<a href="/">{{settings.title|escape}}</a>
 		</div>
 		<div class="section">
 			<div class="articles">
