@@ -19,6 +19,7 @@
 
 require(classes_dir.'post.php');
 
+$session->canonical = sprintf('%sarchive', $settings->url);
 $html->do_header(_('Post archive'));
 
 $posts = $db->get_results('SELECT timestamp, title, permaid FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC', array(
@@ -28,8 +29,6 @@ $posts = $db->get_results('SELECT timestamp, title, permaid FROM posts WHERE db 
 if (!$posts) {
 	$html->do_sysmsg(_('Page not found'), null, 404);
 }
-
-$session->canonical = sprintf('%sarchive', $settings->url);
 
 $timestamp = array();
 $post = new post();
@@ -44,7 +43,8 @@ foreach ($posts as $this_post) {
 		$timestamp[date('mY', $post->timestamp)] = true;
 		printf('<h4>%s</h4>', strftime('%B', $post->timestamp));
 	}
-	printf('<p><a href="%s%s">%s</a> - <strong>%s</strong>', $settings->url, $post->permaid, $post->title, strftime(_('%B %e'), $post->timestamp));
+	printf('<p><a href="%s%s">%s</a> - <strong>%s</strong>',
+		$settings->url, htmlspecialchars($post->permaid), htmlspecialchars($post->title), strftime(_('%B %e'), $post->timestamp));
 }
 echo '</section>';
 
