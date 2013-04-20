@@ -50,10 +50,9 @@ switch ($params[0]) {
 			case 'allow':
 			default:
 				/* don't index /page/: only the individual articles and the post archive */
-				echo "Allow: /\nDisallow: /page/*\nDisallow: /rss";
+				echo "Allow: /\nDisallow: /page/*\nDisallow: /rss\n\n";
+				printf('Sitemap: %ssitemap.xml', $settings->url);
 		}
-		echo "\n\n";
-		printf('Sitemap: %ssitemap.xml', $settings->url);
 		break;
 	case 'favicon.ico':
 		header('HTTP/1.1 301 Moved Permanently');

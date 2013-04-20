@@ -43,7 +43,7 @@ foreach ($posts as $this_post) {
 		$timestamp[date('mY', $post->timestamp)] = true;
 		printf('<h4>%s</h4>', strftime('%B', $post->timestamp));
 	}
-	printf('<p><a href="%s%s">%s</a> - <strong>%s</strong>',
+	printf('<p><a href="%s%s">%s</a> — <strong>%s</strong>',
 		$settings->url, htmlspecialchars($post->permaid), htmlspecialchars($post->title), strftime(_('%B %e'), $post->timestamp));
 }
 echo '</section>';
