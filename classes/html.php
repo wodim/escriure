@@ -80,8 +80,8 @@ class HTML {
 		if ($this->theme_req->html4_compat == false) {
 			$this->check_browser();
 		}
-		$timestamp['core'] = md5(sprintf('%s%s', filemtime(sprintf('statics/%s/core.css', $settings->theme)), $settings->site_key));
-		$timestamp['escriure'] = md5(sprintf('%s%s', filemtime(sprintf('statics/%s/escriure.png', $settings->theme)), $settings->site_key));
+		$timestamp['core'] = md5(sprintf('%s%s%s', filemtime(sprintf('statics/%s/core.css', $settings->theme)), $settings->site_key, $settings->theme));
+		$timestamp['escriure'] = md5(sprintf('%s%s%s', filemtime(sprintf('statics/%s/escriure.png', $settings->theme)), $settings->site_key, $settings->theme));
 		if ($settings->analytics_enabled) {
 			$timestamp['ga'] = md5(sprintf('%s%s', filemtime('statics/ga.js'), $settings->site_key));
 		}
