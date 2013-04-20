@@ -19,9 +19,6 @@
 
 require(classes_dir.'post.php');
 
-$session->canonical = sprintf('%sarchive', $settings->url);
-$html->do_header(_('Post archive'));
-
 $posts = $db->get_results('SELECT timestamp, title, permaid FROM posts WHERE db = :db AND status = \'published\' ORDER BY id DESC', array(
 	array(':db', $settings->db, PDO::PARAM_STR)
 ));
@@ -29,6 +26,9 @@ $posts = $db->get_results('SELECT timestamp, title, permaid FROM posts WHERE db 
 if (!$posts) {
 	$html->do_sysmsg(_('Page not found'), null, 404);
 }
+
+$session->canonical = sprintf('%sarchive', $settings->url);
+$html->do_header(_('Post archive'));
 
 $timestamp = array();
 $post = new post();
