@@ -1,8 +1,8 @@
 <article>
 	<div class="content">
-		<a class="title" href="{{post.permalink}}">{{post.title}}</a>
+		<a class="title" href="{{post.permalink}}">{{post.title|escape}}</a>
 		<div class="text">
-			{{post.text}}
+			{{post.text_html}}
 		</div>
 	</div>
 	<div class="meta">

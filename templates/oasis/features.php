@@ -18,9 +18,9 @@
 */
 
 $features = array(
-		'latest_posts' => true,
-		'custom_dates' => 'eb',
-		'nav_buttons' => true,
-		'html4_compat' => true,
+		'latest_posts' => false,
+		'custom_dates' => false,
+		'nav_buttons' => false,
+		'html4_compat' => false,
 		'comments' => true
 	);

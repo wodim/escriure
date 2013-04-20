@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8" />
 {% if title %}
-		<title>{{title}} - {{settings.title}}</title>
+		<title>{{title|escape}} — {{settings.title|escape}}</title>
 {% else %}
-		<title>{{settings.title}}</title>
+		<title>{{settings.title|escape}}</title>
 {% endif %}
 {% if session.sysmsg %}
 		<meta name="robots" content="noindex,nofollow" />
@@ -21,7 +21,7 @@
 {% endif %}
 		<link rel="stylesheet" type="text/css" media="all" href="{{settings.statics_url}}_/css/core/{{timestamp.core}}" />
 		<link rel="shortcut icon" href="{{settings.statics_url}}_/png/escriure/{{timestamp.escriure}}" type="image/x-png" />
-		<link rel="alternate" type="application/rss+xml" title="{{settings.title}}" href="{{settings.url}}rss" />
+		<link rel="alternate" type="application/rss+xml" title="{{settings.title|escape}}" href="{{settings.url}}rss" />
 {% if settings.analytics_enabled %}
 		<script>
 			var _gaq = _gaq || [];
@@ -38,7 +38,7 @@
 	</head>
 	<body>
 		<div class="header">
-			<a class="blog" href="/">{{settings.title}}</a>
+			<a class="blog" href="/">{{settings.title|escape}}</a>
 		</div>
 		<div class="section">
 			<div class="sidebar">
@@ -54,7 +54,7 @@
 				<h5>Últimos posts</h5>
 				<ul>
 {% for post in html.theme_req.latest_posts %}
-					<li><a href="/{{post.permaid}}" title="{{post.title|escape}}">{{post.title}}</a></li>
+					<li><a href="/{{post.permaid}}" title="{{post.title|escape}}">{{post.title|escape}}</a></li>
 {% endfor %}
 				</ul>
 {% if html.theme_req.nav_buttons.available %}

@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8" />
 {% if title %}
-		<title>{{title}} - {{settings.title}}</title>
+		<title>{{title|escape}} — {{settings.title|escape}}</title>
 {% else %}
-		<title>{{settings.title}}</title>
+		<title>{{settings.title|escape}}</title>
 {% endif %}
 {% if session.sysmsg %}
 		<meta name="robots" content="noindex,nofollow" />
@@ -16,9 +16,12 @@
 {% if session.description %}
 		<meta name="description" content="{{session.description|escape}}" />
 {% endif %}
-		<link rel="stylesheet" type="text/css" media="all" href="{{settings.statics_url}}{{settings.theme}}/core.css?5" />
-		<link rel="shortcut icon" href="{{settings.statics_url}}{{settings.theme}}/escriure.png" type="image/x-png"/>
-		<link rel="alternate" type="application/rss+xml" title="{{settings.title}}" href="{{settings.url}}rss" />
+{% if session.canonical %}
+		<link rel="canonical" href="{{session.canonical|escape}}" />
+{% endif %}
+		<link rel="stylesheet" type="text/css" media="all" href="{{settings.statics_url}}_/css/core/{{timestamp.core}}" />
+		<link rel="shortcut icon" href="{{settings.statics_url}}_/png/escriure/{{timestamp.escriure}}" type="image/x-png" />
+		<link rel="alternate" type="application/rss+xml" title="{{settings.title|escape}}" href="{{settings.url}}rss" />
 {% if settings.analytics_enabled %}
 		<script>
 			var _gaq = _gaq || [];
@@ -27,7 +30,7 @@
 				_gaq.push(['_trackPageview']);
 
 			(function() {
-				var ga = document.createElement('script'); ga.async = true; ga.src = '{{settings.statics_url}}ga.js';
+				var ga = document.createElement('script'); ga.async = true; ga.src = '{{settings.statics_url}}_/js/ga/{{timestamp.ga}}';
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			})();
 		</script>
@@ -35,6 +38,6 @@
 	</head>
 	<body>
 		<header>
-			<a class="blog" href="/">{{settings.title}}<span class="home">Haz clic para volver al inicio</span></a>
+			<a class="blog" href="/">{{settings.title|escape}}<span class="home">Haz clic para volver al inicio</span></a>
 		</header>
 		<section>
