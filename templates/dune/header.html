@@ -42,14 +42,16 @@
 		</div>
 		<div class="section">
 			<div class="sidebar">
+{% if settings.meta %}
 				<span>{{settings.meta.description}}</span>
-{% if settings.meta.social %}
+	{% if settings.meta.social %}
 				<h5>En otros lados</h5>
 				<ul>
-	{% for net in settings.meta.social %}
+		{% for net in settings.meta.social %}
 					<li><a href="{{net.url}}" target="_blank">{{net.title}}</a></li>
-	{% endfor %}
+		{% endfor %}
 				</ul>
+	{% endif %}
 {% endif %}
 				<h5>Últimos posts</h5>
 				<ul>
