@@ -30,6 +30,12 @@ foreach ($params as $k => $v) {
 
 $params[0] = (isset($params[0]) && $params[0] != '') ? $params[0] : 'home';
 
+if ($settings->statics_only
+	&& ($params[0] != '_'
+	    && $params[0] != 'blob')) {
+	$html->do_sysmsg(_('Page not found'), null, 404);
+}
+
 switch ($params[0]) {
 	case 'robots.txt':
 	case 'favicon.ico':

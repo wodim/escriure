@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 CREATE TABLE IF NOT EXISTS `sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `domain` varchar(32) NOT NULL,
+  `statics_only` tinyint(1) NOT NULL,
   `lang` varchar(5) NOT NULL,
   `locale` varchar(16) NOT NULL,
   `collate` varchar(24) NOT NULL,
@@ -72,7 +73,6 @@ CREATE TABLE IF NOT EXISTS `sites` (
 
 CREATE TABLE IF NOT EXISTS `blobs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `db` varchar(32) NOT NULL,
   `name` varchar(32) NOT NULL,
   `mimetype` varchar(32) NOT NULL,
   `timestamp` int(11) NOT NULL,

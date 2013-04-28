@@ -21,8 +21,7 @@ if (!isset($params[1]) || count($params) != 2) {
 	$html->do_sysmsg(_('Page not found'), null, 404);
 }
 
-$file = $db->get_row('SELECT name, mimetype, content, size FROM blobs WHERE db = :db AND name = :name', array(
-	array(':db', $settings->db, PDO::PARAM_STR),
+$file = $db->get_row('SELECT name, mimetype, content, size FROM blobs WHERE name = :name', array(
 	array(':name', $params[1], PDO::PARAM_STR)
 ));
 

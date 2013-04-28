@@ -18,7 +18,7 @@
 */
 
 class Settings {
-   const READ = 'SELECT domain, lang, locale, `collate`,
+   const READ = 'SELECT domain, statics_only, lang, locale, `collate`,
 	analytics_enabled, analytics_code,
 	url, statics_url, db, title,
 	page_size, robots, mail, theme, site_key, meta_json,
@@ -26,6 +26,7 @@ class Settings {
 	FROM sites WHERE domain = :domain';
 	/* we are entitled to add reasonable defaults here!! */
 	var $domain = '';
+	var $statics_only = false;
 	var $lang = '';
 	var $locale = '';
 	var $collate = '';
@@ -35,7 +36,7 @@ class Settings {
 	var $statics_url = '';
 	var $db = '';
 	var $title = '';
-	var $page_size = 3;
+	var $page_size = 5;
 	var $robots = 'allow';
 	var $mail = '';
 	var $theme = 'oasis';
