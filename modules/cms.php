@@ -44,16 +44,14 @@ switch ($type) {
 
 		if ($error == false) {
 			$md5 = md5(sprintf('%s%s', file_get_contents($_FILES['content']['tmp_name']), $settings->site_key));
-			$count = $db->get_var('SELECT COUNT(1) FROM blobs WHERE name = :name AND db = :db', array(
-				array(':db', $settings->db, PDO::PARAM_STR),
+			$count = $db->get_var('SELECT COUNT(1) FROM blobs WHERE name = :name', array(
 				array(':name', $md5, PDO::PARAM_STR)
 			));
 			if ($count > 0) {
 				add_result(sprintf('Error: duplicated file. Old name: <a href="%sblob/%s" target="_blank"><code>%s</code></a>', $settings->url, $md5, $md5));
 			} else {
-				$db->query('INSERT INTO blobs (db, name, mimetype, `timestamp`, size, content)
-					VALUES (:db, :name, :mimetype, :timestamp, :size, :content)', array(
-					array(':db', $settings->db, PDO::PARAM_STR),
+				$db->query('INSERT INTO blobs (name, mimetype, `timestamp`, size, content)
+					VALUES (:name, :mimetype, :timestamp, :size, :content)', array(
 					array(':name', $md5, PDO::PARAM_STR),
 					array(':mimetype',
 						isset($_POST['mimetype']) && trim($_POST['mimetype'] != '') ? trim($_POST['mimetype']) : $_FILES['content']['type'],
@@ -67,9 +65,7 @@ switch ($type) {
 		}
 		break;
 	case 'blob_list':
-		$return = $db->get_results('SELECT name, timestamp, mimetype, size FROM blobs WHERE db = :db', array(
-			array(':db', $settings->db, PDO::PARAM_STR)
-		));
+		$return = $db->get_results('SELECT name, timestamp, mimetype, size FROM blobs');
 		if (count($return) > 0) {
 			foreach ($return as $blob) {
 				add_result(
