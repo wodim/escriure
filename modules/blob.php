@@ -18,7 +18,7 @@
 */
 
 if (!isset($params[1]) || count($params) != 2) {
-	$html->do_sysmsg(_('Page not found'), null, 404);
+	not_found();
 }
 
 $file = $db->get_row('SELECT name, mimetype, content, size FROM blobs WHERE name = :name', array(
@@ -26,7 +26,7 @@ $file = $db->get_row('SELECT name, mimetype, content, size FROM blobs WHERE name
 ));
 
 if (!$file) {
-	$html->do_sysmsg(_('Page not found'), null, 404);
+	not_found();
 }
 
 header('Cache-Control: public, max-age=31536000');
