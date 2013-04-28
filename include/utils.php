@@ -54,3 +54,9 @@ function is_posting($required) {
 function debug($message) {
 	printf('<span style="border: 1px solid white; background: red; font-weight: bold; font-size: 9pt; color: white; padding: 3px 5px; display: inline-block;">%s</span>%s', $message, "\n");
 }
+
+function not_found() {
+        header('HTTP/1.0 404 Not Found');
+        Haanga::Load('bare404.html');
+        die();
+}

@@ -19,12 +19,6 @@
 
 $statics = array();
 
-function notfound() {
-	header('HTTP/1.0 404 Not Found');
-	Haanga::Load('bare404.html');
-	die();
-}
-
 function headers($contenttype) {
 	header('Cache-Control: public, max-age=31536000');
 	header('Expires: Thu, 01 Jan 2099 00:00:00 GMT');
@@ -37,18 +31,18 @@ function headers($contenttype) {
 }
 
 if (count($params) < 3) {
-	notfound();
+	not_found();
 }
 
 if (!preg_match('/^[a-z_]+$/', $params[2])) {
-	notfound();
+	not_found();
 }
 
 /* css */
 if ($params[1] == 'css') {
 	if (!file_exists(sprintf('statics/%s/%s.css', $settings->theme, $params[2])) &&
 		!file_exists(sprintf('statics/private/%s.css', $params[2]))) {
-		notfound();
+		not_found();
 	}
 
 	foreach ($statics as $static) {
@@ -69,7 +63,7 @@ if ($params[1] == 'css') {
 if ($params[1] == 'png') {
 	if (!file_exists(sprintf('statics/%s/%s.png', $settings->theme, $params[2])) &&
 		!file_exists(sprintf('statics/private/%s.png', $params[2]))) {
-		notfound();
+		not_found();
 	}
 
 	headers('image/png');
@@ -84,7 +78,7 @@ if ($params[1] == 'png') {
 if ($params[1] == 'js') {
 	if (!file_exists(sprintf('statics/%s.js', $params[2])) &&
 		!file_exists(sprintf('statics/private/%s.js', $params[2]))) {
-		notfound();
+		not_found();
 	}
 
 	headers('application/javascript');
