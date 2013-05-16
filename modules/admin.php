@@ -19,8 +19,6 @@
 
 require(classes_dir.'post.php');
 
-global $params, $db, $html;
-
 if (!isset($params[1])) {
 	$params[1] = 'index';
 }

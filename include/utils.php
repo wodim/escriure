@@ -18,8 +18,6 @@
 */
 
 function redir($location = null) {
-	global $session;
-
 	if (!$location) {
 		$location = '/';
 	}

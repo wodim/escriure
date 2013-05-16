@@ -72,7 +72,7 @@ class Post {
 		}
 
 		$this->permalink = sprintf('%s%s', $settings->url, $this->permaid);
-		$this->hdate = strftime(_('%m/%d %I:%M %P'), $this->timestamp);
+		$this->hdate = trim(strftime(_('%m/%d %I:%M %P'), $this->timestamp));
 		if ($html->theme_req->custom_dates) {
 			$this->cdate = new stdClass();
 			$this->populate_cdate();
@@ -140,7 +140,7 @@ class Post {
 
 	function output($odd = true) {
 		global $session, $settings;
-		
+
 		if (!$this->read) {
 			die();
 		}
