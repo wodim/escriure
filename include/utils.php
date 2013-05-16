@@ -29,14 +29,6 @@ function redir($location = null) {
 	die;
 }
 
-function is_bot() {
-	return(isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|slurp/i', $_SERVER['HTTP_USER_AGENT']));
-}
-
-function sha512($string) {
-	return hash('sha512', $string);
-}
-
 function is_posting($required) {
 	if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		return false;
@@ -56,7 +48,7 @@ function debug($message) {
 }
 
 function not_found() {
-        header('HTTP/1.0 404 Not Found');
-        Haanga::Load('bare404.html');
-        die();
+	header('HTTP/1.0 404 Not Found');
+	Haanga::Load('bare404.html');
+	die;
 }

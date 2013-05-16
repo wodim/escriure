@@ -1,25 +1,19 @@
-#: modules/list.php:36 modules/fourohfour.php:20 modules/archive.php:31
+
 msgid "Page not found"
 msgstr "Página no encontrada"
 
-#: modules/post.php:30
 msgid "No such post"
 msgstr "Página no encontrada"
 
-#: modules/comment-form.php:44
-#, php-format
 msgid "Result of <strong>%s</strong>?"
-msgstr "¿Cuánto es %s?"
+msgstr "¿Cuánto es <strong>%s</strong>?"
 
-#: modules/comment-store.php:21
 msgid "Comments for this post were closed while you were writing this one."
 msgstr "Los comentarios de esta entrada se han cerrado."
 
-#: modules/comment-store.php:35
 msgid "Please, don't leave your name empty. You can use an alias if you want."
 msgstr "Por favor, no dejes tu nombre en blanco. Usa un alias si quieres."
 
-#: modules/comment-store.php:38
 msgid ""
 "Your e-mail address is not valid. Please, check it and try again or just "
 "leave it empty."
@@ -27,111 +21,83 @@ msgstr ""
 "Tu dirección de correo no es válida.<br />Por favor, comprueba que esté "
 "bien escrita o déjala en blanco si así lo prefieres."
 
-#: modules/comment-store.php:41
 msgid "You forgot the most important part: the comment!"
 msgstr "Se te olvidó la parte más importante: ¡el comentario!"
 
-#: modules/comment-store.php:50
 msgid "The result of the operation is not valid! Was it too hard for you?"
 msgstr "El resultado de la operación no era válido, ¿era muy difícil para ti?"
 
-#: modules/archive.php:24
 msgid "Post archive"
 msgstr "Lista de entradas"
 
-#: modules/archive.php:47
 msgid "%B %e"
 msgstr "%e de %B"
 
-#: classes/post.php:67 classes/comment.php:65
 msgid "%m/%d %I:%M %P"
 msgstr "%e de %b %H:%M"
 
-#: classes/html.php:46 classes/html.php:48
 msgid "« prev"
 msgstr "« anterior"
 
-#: classes/html.php:68 classes/html.php:70
 msgid "next »"
 msgstr "siguiente »"
 
-#: classes/html.php:83
 msgid "Are you lost?"
 msgstr "¿Te has perdido?"
 
-#: templates/oasis/footer.html:5
 msgid "Archive"
 msgstr "Archivo"
 
-#: templates/oasis/footer.html:6
-#, python-format
 msgid "I use %s"
 msgstr "Uso %s"
 
-#: templates/oasis/footer.html:7
-#, python-format
 msgid "Theme Oasis based on %s"
 msgstr "Tema Oasis basado en %s"
 
-#: templates/oasis/footer.html:8
 msgid "Contact:"
 msgstr "Contacto:"
 
-#: templates/oasis/sysmsg.html:3
 msgid "Go back"
 msgstr "Atrás"
 
-#: templates/oasis/post.html:9
-#, python-format
 msgid "Posted on %s"
 msgstr "Publicado el %s"
 
-#: templates/oasis/post.html:12
-#, python-format
 msgid "%s comments"
 msgstr "%s comentarios"
 
-#: templates/oasis/post.html:15
 msgid "One comment"
 msgstr "Un comentario"
 
-#: templates/oasis/post.html:17
 msgid "Leave a comment"
 msgstr "Deja un comentario"
 
-#: templates/oasis/comment-form.html:10
 msgid "Your name:"
 msgstr "Tu nombre:"
 
-#: templates/oasis/comment-form.html:12
 msgid "Your e-mail (optional):"
 msgstr "Tu correo (opcional):"
 
-#: templates/oasis/comment-form.html:14
 msgid "Your website (optional):"
 msgstr "Tu web (opcional):"
 
-#: templates/oasis/comment-form.html:16
 msgid "Your comment:"
 msgstr "Tu comentario:"
 
-#: templates/oasis/comment-form.html:21
 msgid "Send comment"
 msgstr "Enviar comentario"
 
-#: classes/post.php:70
 msgid "Comments for this post are closed."
 msgstr "Los comentarios de esta entrada están cerrados."
 
-#: templates/oasis/unsupported-browser.html:4
 msgid "Unsupported browser"
 msgstr "Navegador no soportado"
 
-#: templates/oasis/unsupported-browser.html:8
 msgid "Sorry, your browser is not supported."
 msgstr "Tu navegador está desactualizado."
 
-#: templates/oasis/unsupported-browser.html:9
-#, python-format
-msgid "Click <a href=\"%s\">here</a> to download Internet Explorer 9."
-msgstr "Haz clic <a href=\"%s\">aquí</a> para descargar Internet Explorer 9."
+msgid "Click <a href=\"%s\">here</a> to download Internet Explorer 10."
+msgstr "Haz clic <a href=\"%s\">aquí</a> para descargar Internet Explorer 10."
+
+msgid "Publicado por"
+msgstr "Posted by"

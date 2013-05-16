@@ -140,6 +140,7 @@ class Post {
 
 	function output($odd = true) {
 		global $session, $settings;
+		
 		if (!$this->read) {
 			die();
 		}
@@ -153,6 +154,7 @@ class Post {
 
 	function output_rss() {
 		global $session;
+
 		if (!$this->read) {
 			die();
 		}
@@ -169,7 +171,7 @@ class Post {
 	}
 
 	function add_warning($text) {
-		if ($this->warning != '') {
+		if ($this->warning) {
 			$this->warning = sprintf('%s<br />%s', $this->warning, $text);
 		} else {
 			$this->warning = $text;

@@ -1,6 +1,6 @@
 <div class="article">
 	<div class="meta">
-		<a class="date" href="{{post.permalink}}" title="Publicado el {{post.hdate|escape}} por {{post.nick|escape}}">
+		<a class="date" href="{{post.permalink}}" title="{% trans _('Publicado por') %} {{post.nick|escape}} — {{post.hdate}}">
 			{{post.cdate.e}} {{post.cdate.b}} {{post.cdate.G}}
 		</a>
 	</div>
