@@ -130,7 +130,7 @@ class Post {
 			$this->text_html = str_replace(sprintf('{{UH-UH-%s-CANT-TOUCH-THIS}}', $entity), sprintf('&%s;', $entity), $this->text_html);
 		}
 
-		$this->text_html = str_replace(array("\n", "\r"), '', $this->text_html);
+		/* $this->text_html = str_replace(array("\n", "\r"), '', $this->text_html); */
 		if ($this->comment_status == 'closed') {
 			$this->warning = _('Comments for this post are closed.');
 		}
