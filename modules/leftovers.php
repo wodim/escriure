@@ -17,8 +17,6 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-global $params, $settings, $db;
-
 /* don't index any of these */
 header('X-Robots-Tag: noindex');
 

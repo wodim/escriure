@@ -19,8 +19,6 @@
 
 require(classes_dir.'post.php');
 
-global $params, $settings;
-
 if (isset($params[1]) && is_numeric($params[1])) {
 	$page_number = (int)$params[1];
 } else {
@@ -54,6 +52,6 @@ foreach ($posts as $this_post) {
 	$post->output();
 }
 
-echo($pager);
+echo $pager;
 
 $html->do_footer();

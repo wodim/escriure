@@ -73,6 +73,7 @@ class Comment {
 
 	function output($odd = true) {
 		global $session, $settings;
+
 		if (!$this->read) {
 			die();
 		}

@@ -25,7 +25,8 @@ if (isset($params[1]) && $params[1] == 'twitter') {
 }
 
 $posts = $db->get_results(
-	sprintf('SELECT %s FROM posts WHERE status = \'published\' AND db = :db %s ORDER BY id DESC LIMIT %d', Post::READ, $twitter, $settings->page_size), array(
+	sprintf('SELECT %s FROM posts WHERE status = \'published\' AND db = :db %s ORDER BY id DESC LIMIT %d',
+		Post::READ, $twitter, $settings->page_size * 2), array(
 	array(':db', $settings->db, PDO::PARAM_STR)
 ));
 

@@ -20,8 +20,6 @@
 require(classes_dir.'post.php');
 require(classes_dir.'comment.php');
 
-global $params, $session;
-
 $post = new post();
 preg_match('/^[a-z0-9\-]*/', $params[0], $matches);
 $post->permaid = $matches[0];
