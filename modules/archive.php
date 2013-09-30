@@ -31,8 +31,8 @@ $session->canonical = sprintf('%sarchive', $settings->url);
 $html->do_header(_('Post archive'));
 
 $timestamp = array();
-$post = new post();
-echo '<section class="archive">';
+$post = new Post();
+echo '<div class="archive">';
 foreach ($posts as $this_post) {
 	$post->read($this_post);
 	if (!isset($timestamp['00'.date('Y', $post->timestamp)])) {
@@ -46,6 +46,6 @@ foreach ($posts as $this_post) {
 	printf('<p><a href="%s%s">%s</a> — <strong>%s</strong>',
 		$settings->url, htmlspecialchars($post->permaid), htmlspecialchars($post->title), strftime(_('%B %e'), $post->timestamp));
 }
-echo '</section>';
+echo '</div>';
 
 $html->do_footer();
