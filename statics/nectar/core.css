@@ -214,26 +214,26 @@ div.article .meta .date:hover {
 	margin-right: 0;
 }
 
-section.archive {
+div.archive {
 	margin: 20px;
 }
 
-section.archive h3,
-section.archive h4 {
+div.archive h3,
+div.archive h4 {
 	font-weight: bold;
 }
 
-section.archive h3 {
+div.archive h3 {
 	font-size: 16pt;
 	margin: 8px 0;
 }
 
-section.archive h4 {
+div.archive h4 {
 	font-size: 12pt;
 	margin: 6px 0 6px 6px;
 }
 
-section.archive p {
+div.archive p {
 	margin-left: 20px;
 }
 
