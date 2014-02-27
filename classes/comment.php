@@ -122,7 +122,7 @@ class Comment {
 				'%s'."\n\n".
 				'You can read it here:'."\n".
 				'%s%s#comments',
-				$nick, $this->post->title, $this->text, $settings->url, $this->post->permaid);
+				$this->nick, $this->post->title, $this->text, $settings->url, $this->post->permaid);
 			$mail = wordwrap($mail, 70);
 			mail(sprintf('%s admin <%s>', $settings->title, $settings->admin_mail),
 				sprintf('[%s] New comment on %s', $settings->title, $this->post->title),
