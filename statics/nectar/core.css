@@ -259,10 +259,12 @@ div.article h6 {
 	margin-bottom: 8px;
 }
 
+div.article h1,
 div.article h3 {
 	font-size: 13pt;
 }
 
+div.article h2,
 div.article h4 {
 	font-size: 11pt;
 }
